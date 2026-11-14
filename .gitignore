@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# keep an example env file if one is ever added
+!.env.example
+
+# editors / local tooling
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.claude/settings.local.json
