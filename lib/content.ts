@@ -146,7 +146,7 @@ export const TEAM: Person[] = [
     slug: "sergei-smirnov",
     name: "Sergei Smirnov",
     role: "Co-founder",
-    href: "https://github.com/seriozh1",
+    href: "https://www.linkedin.com/in/seriozh1/",
     way: "celadon",
     bio: "PhD student at the University of Helsinki working on the evaluation of AI values, with five years of industry experience in machine learning. He built CivAI's AI Values demo and is a graduate of MARS, SPAR and ARENA.",
     links: [
