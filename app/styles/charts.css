@@ -1,0 +1,575 @@
+/* Charts. Marks are ink, the reference line is lapis, and color is spent only
+   where it carries identity (a highlighted lab) or polarity (the matrix). */
+
+:root {
+  --series-1: #2742d4;
+  --series-2: #d9432b;
+  --series-3: #0e8c7a;
+  --series-rest: #8b919c;
+
+  /* Diverging scale around an equal share: ochre below, lapis above, gray between. */
+  --step-n3: #8f5d00;
+  --step-n2: #dc9a16;
+  --step-n1: #f0dc9b;
+  --step-0: #e2e5df;
+  --step-p1: #bccdf1;
+  --step-p2: #7d93ea;
+  --step-p3: #2742d4;
+}
+
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ---------- Plate ---------- */
+
+.plate {
+  padding: var(--s-5);
+  background: var(--sheet);
+}
+
+@media (min-width: 48rem) {
+  .plate {
+    padding: var(--s-6);
+  }
+}
+
+.plate + .plate {
+  margin-top: var(--s-6);
+}
+
+.plate-title {
+  font-size: 1.375rem;
+}
+
+.plate-body {
+  margin-top: var(--s-5);
+}
+
+.plate figcaption {
+  margin-top: var(--s-5);
+  max-width: 76ch;
+  font-size: var(--text-caption);
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.stack {
+  display: grid;
+  gap: var(--s-6);
+}
+
+.stack-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: var(--s-2);
+}
+
+.stack-head .value-tile {
+  width: 1.625rem;
+}
+
+/* ---------- Ranking ---------- */
+
+.ranking {
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: var(--text-small);
+  line-height: 1.3;
+}
+
+.ranking th,
+.ranking td {
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--rule-soft);
+  font-weight: 400;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.ranking thead th {
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--ink);
+  font-size: var(--text-caption);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ranking .num {
+  width: 1%;
+  padding-left: var(--s-4);
+  text-align: right;
+}
+
+.ranking tbody th {
+  width: 34%;
+  padding-right: var(--s-3);
+}
+
+.ranking .ranking-axis,
+.ranking .ranking-plot {
+  position: relative;
+  border-left: 0.5rem solid transparent;
+  border-right: 0.5rem solid transparent;
+  background-clip: padding-box;
+}
+
+.ranking-plot {
+  height: 2rem;
+  background-image: repeating-linear-gradient(to bottom, var(--lapis) 0 3px, transparent 3px 6px);
+  background-size: 1.5px 100%;
+  background-position: var(--ref) 0;
+  background-repeat: no-repeat;
+}
+
+.ranking-tick {
+  position: absolute;
+  bottom: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.ranking-tick.is-ref {
+  transform: translateX(-50%);
+  color: var(--lapis-deep);
+  font-weight: 600;
+}
+
+.ranking-tick.is-end {
+  transform: translateX(-100%);
+}
+
+.ranking-ci,
+.ranking-link {
+  position: absolute;
+  top: 50%;
+  height: 2px;
+  margin-top: -1px;
+  background: var(--ink-3);
+}
+
+.ranking-link {
+  background: var(--ink);
+}
+
+.ranking-dot {
+  position: absolute;
+  top: 50%;
+  width: 0.6875rem;
+  height: 0.6875rem;
+  margin: -0.34375rem 0 0 -0.34375rem;
+  border-radius: 50%;
+  background: var(--ink);
+  box-shadow: 0 0 0 2px var(--sheet);
+}
+
+.ranking-dot.is-open {
+  background: var(--sheet);
+  box-shadow: inset 0 0 0 2px var(--ink), 0 0 0 2px var(--sheet);
+}
+
+.ranking tr.is-picked th,
+.ranking tr.is-picked td {
+  font-weight: 600;
+}
+
+.ranking tr.is-picked .ranking-dot {
+  background: var(--lapis);
+}
+
+.ranking-interval {
+  color: var(--ink-2);
+}
+
+@media (max-width: 34rem) {
+  .ranking .ranking-interval,
+  .ranking-tick.is-end {
+    display: none;
+  }
+
+  .ranking tbody th {
+    width: 40%;
+  }
+}
+
+.profile-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration-color: transparent;
+}
+
+.profile-value:hover {
+  text-decoration-color: var(--lapis);
+}
+
+.profile-value .value-tile {
+  width: 1.625rem;
+}
+
+/* ---------- Boards (results by value) ---------- */
+
+.boards {
+  display: grid;
+  gap: var(--s-5);
+}
+
+@media (min-width: 64rem) {
+  .boards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .board.is-pair {
+    grid-column: 1 / -1;
+  }
+}
+
+.board {
+  padding: var(--s-5);
+  background: var(--sheet);
+  scroll-margin-top: var(--s-5);
+}
+
+@media (min-width: 48rem) {
+  .board {
+    padding: var(--s-6);
+  }
+}
+
+.board-head {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: var(--s-4);
+  align-items: start;
+}
+
+.board-head .value-tile {
+  width: 3.5rem;
+}
+
+.board-head p {
+  margin-top: var(--s-1);
+  max-width: 70ch;
+  font-size: var(--text-small);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.board-panels {
+  display: grid;
+  gap: var(--s-6) var(--s-7);
+  margin-top: var(--s-5);
+}
+
+@media (min-width: 64rem) {
+  .board.is-pair .board-panels {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.board-panel h4 {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-3);
+  margin-bottom: var(--s-3);
+  font-size: var(--text-small);
+}
+
+.flag {
+  padding: 0.05rem 0.4rem;
+  box-shadow: inset 0 0 0 1px var(--ink-3);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+/* ---------- Matrix ---------- */
+
+.matrix-scroll {
+  overflow-x: auto;
+  margin-inline: calc(var(--s-5) * -1);
+  padding-inline: var(--s-5);
+}
+
+.matrix {
+  width: auto;
+  min-width: 100%;
+  border-collapse: separate;
+  border-spacing: 3px;
+  font-size: var(--text-small);
+}
+
+.matrix th {
+  font-weight: 400;
+  text-align: left;
+}
+
+.matrix thead th {
+  vertical-align: bottom;
+  padding-bottom: var(--s-2);
+}
+
+.matrix-corner {
+  font-size: var(--text-caption);
+  font-weight: 600 !important;
+}
+
+.matrix-head {
+  display: grid;
+  gap: 0.35rem;
+  justify-items: start;
+  min-width: 4.4rem;
+  font-size: 0.75rem;
+  line-height: 1.25;
+  text-decoration-color: transparent;
+}
+
+.matrix-head:hover {
+  text-decoration-color: var(--lapis);
+}
+
+.matrix-head .value-tile {
+  width: 1.875rem;
+}
+
+.matrix tbody th {
+  padding-right: var(--s-4);
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.matrix-lab {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--ink-3);
+}
+
+.matrix-cell {
+  height: 2.75rem;
+  padding: 0 0.5rem;
+  background: var(--step-0);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.matrix-cell.is-missing {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--rule);
+  font-size: 0.75rem;
+  color: var(--ink-3);
+}
+
+[data-step="-3"] { background: var(--step-n3); color: var(--sheet); }
+[data-step="-2"] { background: var(--step-n2); }
+[data-step="-1"] { background: var(--step-n1); }
+[data-step="0"] { background: var(--step-0); }
+[data-step="1"] { background: var(--step-p1); }
+[data-step="2"] { background: var(--step-p2); }
+[data-step="3"] { background: var(--step-p3); color: var(--sheet); }
+
+.matrix tr.is-picked th {
+  font-weight: 600;
+}
+
+.matrix-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-5);
+  margin-top: var(--s-5);
+  font-size: var(--text-caption);
+  color: var(--ink-2);
+}
+
+.matrix-legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.matrix-swatch {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+/* ---------- Timeline ---------- */
+
+.timeline {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.timeline.is-wide {
+  display: none;
+}
+
+@media (min-width: 40rem) {
+  .timeline.is-wide {
+    display: block;
+  }
+
+  .timeline.is-compact {
+    display: none;
+  }
+}
+
+.chart-grid {
+  stroke: var(--rule-soft);
+  stroke-width: 1;
+}
+
+.chart-axis {
+  stroke: var(--ink-3);
+  stroke-width: 1;
+}
+
+.chart-ref {
+  stroke: var(--lapis);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 3;
+}
+
+.chart-tick {
+  fill: var(--ink-3);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.chart-ref-label {
+  fill: var(--lapis-deep);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.chart-label {
+  fill: var(--ink);
+  font-size: 12.5px;
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: var(--sheet);
+  stroke-width: 3.5px;
+  stroke-linejoin: round;
+}
+
+.timeline.is-compact .chart-tick,
+.timeline.is-compact .chart-ref-label {
+  font-size: 13.5px;
+}
+
+.timeline.is-compact .chart-label {
+  font-size: 14px;
+}
+
+.chart-line {
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.chart-dot {
+  stroke: var(--sheet);
+  stroke-width: 2;
+  outline: none;
+}
+
+.chart-dot.is-rest {
+  fill: var(--series-rest);
+}
+
+.chart-dot:hover,
+.chart-dot:focus-visible {
+  stroke: var(--ink);
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-5);
+  margin-bottom: var(--s-4);
+  font-size: var(--text-small);
+}
+
+.chart-legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chart-key {
+  width: 0.6875rem;
+  height: 0.6875rem;
+  border-radius: 50%;
+}
+
+.chart-key.is-rest {
+  background: var(--series-rest);
+}
+
+.spark {
+  overflow: visible;
+}
+
+.spark-line {
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+
+.spark-dot {
+  fill: var(--ink);
+  stroke: var(--paper);
+  stroke-width: 1.5;
+}
+
+/* ---------- Plain data tables ---------- */
+
+.data {
+  font-size: var(--text-small);
+  line-height: 1.35;
+}
+
+.data th,
+.data td {
+  padding: 0.5rem var(--s-4) 0.5rem 0;
+  border-bottom: 1px solid var(--rule-soft);
+  font-weight: 400;
+  text-align: left;
+  vertical-align: top;
+}
+
+.data .num {
+  padding-right: var(--s-5);
+  padding-left: var(--s-4);
+  text-align: right;
+}
+
+.data .num:last-child {
+  padding-right: 0;
+}
+
+.data thead th {
+  border-bottom: 1px solid var(--ink);
+  font-size: var(--text-caption);
+  font-weight: 600;
+}
+
+.timeline-wrap + .data,
+.table-view {
+  margin-top: var(--s-5);
+}
+
+.table-view summary {
+  font-size: var(--text-small);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--lapis);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.2em;
+}
+
+.table-view .data {
+  margin-top: var(--s-4);
+}

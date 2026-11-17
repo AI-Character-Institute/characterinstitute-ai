@@ -1,0 +1,81 @@
+/* AI Character Institute design tokens.
+   The single source for color, type, space and motion. Components read these
+   variables and never hard-code a value. */
+
+:root {
+  color-scheme: light;
+
+  /* Surfaces and ink. Ledger-tinted paper with blue-black ink. */
+  --paper: #eef0eb;
+  --sheet: #f9faf6;
+  --ink: #141b2d;
+  --ink-2: #404860;
+  --ink-3: #5c6479;
+  --rule: #cfd3d0;
+  --rule-soft: #e0e3de;
+
+  /* Signal. Used for keylines, links and reference lines. */
+  --lapis: #2742d4;
+  --lapis-deep: #1b2f9c;
+
+  /* Pigments. Carried by tiles and by data marks, never by text. */
+  --cinnabar: #d9432b;
+  --ochre: #dc9a16;
+  --malachite: #1e7a5c;
+  --madder: #b33a62;
+
+  /* Tints of the pigments, for tile grounds and quiet fills. */
+  --sky: #bccdf1;
+  --celadon: #c1d9c7;
+  --shell: #f1c5b7;
+  --straw: #f0dc9b;
+  --blush: #ecc0cb;
+
+  /* Type. */
+  --font-serif: var(--font-baskervville), "Baskerville", "Libre Baskerville", Georgia, serif;
+  --font-sans: var(--font-public-sans), "Libre Franklin", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --text-display: clamp(2.5rem, 1.5rem + 3.6vw, 4rem);
+  --text-h1: clamp(2.125rem, 1.5rem + 2.2vw, 3rem);
+  --text-h2: clamp(1.75rem, 1.4rem + 1.3vw, 2.25rem);
+  --text-h3: 1.5rem;
+  --text-h4: 1.1875rem;
+  --text-lead: clamp(1.1875rem, 1.1rem + 0.4vw, 1.3125rem);
+  --text-body: 1.0625rem;
+  --text-small: 0.9375rem;
+  --text-caption: 0.84375rem;
+
+  --leading-tight: 1.08;
+  --leading-heading: 1.18;
+  --leading-body: 1.6;
+
+  /* Space. One module of 8px. The tile is 12 modules on desktop. */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+  --s-10: 8rem;
+
+  --measure: 62ch;
+  --page: 77.5rem;
+  --gutter: clamp(1.25rem, 4.5vw, 3.5rem);
+
+  /* Shape. Print-like: almost square. */
+  --radius-1: 2px;
+  --radius-2: 4px;
+
+  /* The keyline. Every outlined object sits this far out of register. */
+  --key-offset: 5px;
+  --key-weight: 1.5px;
+
+  /* Motion. */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --t-fast: 160ms;
+  --t-slow: 520ms;
+}

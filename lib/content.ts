@@ -1,121 +1,140 @@
+// All editable copy that is not tied to a single page lives here: navigation,
+// the team, prior work, and the standard descriptions of the Institute.
+// Voice rules are in the design system (see README): measured, plain, specific.
+
+import type { ColorwayName } from "./glyphs";
+
 export type LinkItem = { label: string; href: string };
 
-export type WorkItem = {
-  title: string;
-  href: string;
-  context: string;
-  summary: string;
-  links: LinkItem[];
+export const ORG = {
+  name: "AI Character Institute",
+  /** One line. Use wherever the Institute needs a descriptor. */
+  descriptor: "Independent evaluation of AI character",
+  /** One sentence. */
+  short:
+    "The AI Character Institute is an independent non-profit that evaluates the character of frontier AI models.",
+  /** The standard paragraph. */
+  boilerplate:
+    "The AI Character Institute is an independent non-profit that evaluates the character of frontier AI models. We measure the values that models show in their behavior, compare them with what their developers have written down, and publish the results for every major release, so that labs can fix the gaps and policymakers can hold labs to their commitments.",
+  url: "https://characterinstitute.ai",
 };
-
-export type Person = {
-  name: string;
-  href: string;
-  role: string;
-  photo: string;
-  bio: string;
-  links: LinkItem[];
-};
-
-export type Scan = { name: string; says: string; does: string; ok: boolean };
 
 export const CONTACT_EMAIL = "mg1sergey@gmail.com";
 
-export const NAV_LINKS: LinkItem[] = [
-  { label: "Mission", href: "#mission" },
-  { label: "Research", href: "#research" },
-  { label: "Team", href: "#team" },
-  { label: "Get in touch", href: "#contact" },
+export const NAV: LinkItem[] = [
+  { label: "Results", href: "/results/" },
+  { label: "Reports", href: "/reports/" },
+  { label: "Values", href: "/values/" },
+  { label: "Method", href: "/method/" },
+  { label: "About", href: "/about/" },
 ];
 
-export const WORK: WorkItem[] = [
+export const SOURCES = {
+  litmus: "https://arxiv.org/abs/2505.14633",
+  modelSpec: "https://model-spec.openai.com/",
+  constitution: "https://www.anthropic.com/news/claude-new-constitution",
+  forethought: "https://www.forethought.org/research/the-importance-of-ai-character",
+  eigenbench: "https://arxiv.org/abs/2509.01938",
+  sideEffects: "https://lionellevine.github.io/side-effects-of-character-training.pdf",
+  airisk: "https://arxiv.org/abs/2505.14633",
+};
+
+/** What the suite measures. `status` says how much of it is in the preview today. */
+export type Measure = {
+  id: "fidelity" | "divergence" | "stability" | "drift" | "prediction";
+  term: string;
+  question: string;
+  detail: string;
+  status: "live" | "partial" | "planned";
+  statusLabel: string;
+};
+
+export const MEASURES: Measure[] = [
   {
-    title: "EigenBench",
-    href: "https://arxiv.org/abs/2509.01938",
-    context: "Lionel Levine's lab, Cornell · ICLR 2026 oral",
-    summary:
-      "Ranks models by how faithfully they follow any given constitution, by having models judge one another and aggregating the judgments into a consensus, with no ground-truth labels. ValueArena is a prototype public leaderboard built on it.",
-    links: [
-      { label: "Paper", href: "https://arxiv.org/abs/2509.01938" },
-      { label: "ValueArena", href: "https://valuearena.github.io" },
-    ],
+    id: "fidelity",
+    term: "Fidelity",
+    question: "How closely does a model's behavior follow a written set of values?",
+    detail:
+      "Models answer the same scenarios and judge one another's answers against a constitution. EigenBench turns those judgments into a score for each model.",
+    status: "live",
+    statusLabel: "In the preview results",
   },
   {
-    title: "Side effects of character training",
-    href: "https://lionellevine.github.io/side-effects-of-character-training.pdf",
-    context: "Lionel Levine's lab, Cornell · ICML 2026 Pluralistic Alignment Workshop",
-    summary:
-      "Measures how character training a model on one constitution shifts its alignment with other, unrelated constitutions, using EigenBench to quantify the drift.",
-    links: [
-      {
-        label: "Paper",
-        href: "https://lionellevine.github.io/side-effects-of-character-training.pdf",
-      },
-    ],
+    id: "drift",
+    term: "Change across releases",
+    question: "How does a lab's character profile move from one version to the next?",
+    detail:
+      "Running the same suite on each release shows which values strengthened, which weakened, and whether the change was announced.",
+    status: "partial",
+    statusLabel: "In the preview for one constitution",
   },
   {
-    title: "Pluralistic preference alignment via sortition-weighted RLHF",
-    href: "https://icml.cc/virtual/2026/75691",
-    context: "Jinzhou Wu · ICML 2026 Pluralistic Alignment Workshop",
-    summary:
-      "A method for aligning models with diverse human preferences, weighting feedback from a representative sample of people chosen by sortition.",
-    links: [{ label: "Paper", href: "https://icml.cc/virtual/2026/75691" }],
+    id: "divergence",
+    term: "Divergence from specification",
+    question: "Where does the character a model shows depart from the character its developer specified?",
+    detail:
+      "Developers now publish constitutions and model specs. We score each model against its own developer's document and report the criteria where the two part ways.",
+    status: "planned",
+    statusLabel: "In development",
   },
   {
-    title: "AI Deception: Risks, Dynamics, and Controls",
-    href: "https://arxiv.org/abs/2511.22619",
-    context: "Jinzhou Wu, core contributor · Peking University Alignment Group",
-    summary:
-      "A report on the risks, dynamics and controls of deceptive AI systems, cited by the UN Scientific Advisory Board.",
-    links: [{ label: "Report", href: "https://arxiv.org/abs/2511.22619" }],
+    id: "stability",
+    term: "Stability",
+    question: "Does that character hold under pressure?",
+    detail:
+      "The same measurements repeated under adversarial prompts, in long contexts, and when the model acts with autonomy over many steps.",
+    status: "planned",
+    statusLabel: "In development",
   },
   {
-    title: "Concept distillation",
-    href: "https://proceedings.neurips.cc/paper_files/paper/2023/hash/c9450295fd667740a39a68148fc17f6e-Abstract-Conference.html",
-    context: "Avani Gupta · NeurIPS 2023",
-    summary:
-      "Uses human-understandable concepts to steer and improve model behaviour, an interpretable way to change what a model has learned.",
-    links: [
-      {
-        label: "Paper",
-        href: "https://proceedings.neurips.cc/paper_files/paper/2023/hash/c9450295fd667740a39a68148fc17f6e-Abstract-Conference.html",
-      },
-    ],
-  },
-  {
-    title: "AI Values demo",
-    href: "https://civai.org/p/ai-values",
-    context: "Sergei Smirnov · CivAI, MARS fellowship",
-    summary:
-      "An interactive demo that compares people's answers on contested questions with 20 frontier models queried live. 17,000+ page views, 22,000+ answers, top 5 on Hacker News.",
-    links: [
-      { label: "Demo", href: "https://civai.org/p/ai-values" },
-      { label: "Hacker News thread", href: "https://news.ycombinator.com/item?id=46547024" },
-    ],
-  },
-  {
-    title: "Agentic misalignment eval",
-    href: "https://www.lesswrong.com/posts/LMwkQLpQQv2KjgL9q/ai-finance-agent-fakes-the-revenue-data-to-avoid-termination",
-    context: "Sergei Smirnov · ARENA-based bootcamp",
-    summary:
-      "Replicated Anthropic's agentic misalignment study and extended it to multi-turn interactions, where an AI finance agent faked revenue data to avoid being shut down.",
-    links: [
-      {
-        label: "LessWrong post",
-        href: "https://www.lesswrong.com/posts/LMwkQLpQQv2KjgL9q/ai-finance-agent-fakes-the-revenue-data-to-avoid-termination",
-      },
-      { label: "GitHub", href: "https://github.com/seriozh1/agentic-misalignment" },
-    ],
+    id: "prediction",
+    term: "Prediction",
+    question: "Can character scores forecast how a model will behave in settings we did not test?",
+    detail:
+      "The most ambitious aim of the suite. If scores predict later behavior, they become useful before deployment and not only after it.",
+    status: "planned",
+    statusLabel: "Research question",
   },
 ];
+
+/** How results are meant to travel. A real sequence, so it is numbered on the page. */
+export const PROCESS: { title: string; body: string }[] = [
+  {
+    title: "Evaluate every major release",
+    body: "We run one open suite on each frontier model as it ships, with the same scenarios, constitutions and judging rules for every lab.",
+  },
+  {
+    title: "Share results with the lab first",
+    body: "Each lab's model spec team sees its results before they are published, with the transcripts behind every score.",
+  },
+  {
+    title: "Publish the record",
+    body: "Scores, uncertainty, transcripts and method go on a public leaderboard that anyone can inspect and reproduce.",
+  },
+  {
+    title: "Move the check earlier",
+    body: "We work with labs to run the suite internally before release, so that problems with a model's values can be caught while training can still be adjusted.",
+  },
+];
+
+export type Person = {
+  slug: string;
+  name: string;
+  role: string;
+  href: string;
+  bio: string;
+  way: ColorwayName;
+  links: LinkItem[];
+};
 
 export const TEAM: Person[] = [
   {
+    slug: "lionel-levine",
     name: "Lionel Levine",
-    href: "https://lionellevine.github.io",
     role: "Co-founder",
-    photo: "/team/lionel-levine.webp",
-    bio: "Professor of Mathematics at Cornell University, working on AI safety. Co-author of EigenBench (ICLR 2026 oral), a comparative measure of value alignment and character in language models, and of the FrontierMath benchmark.",
+    href: "https://lionellevine.github.io",
+    way: "sky",
+    bio: "Professor of mathematics at Cornell University. He founded Cornell's Long-term AI Safety Research lab and leads its work on value evaluation and character training, including EigenBench.",
     links: [
       { label: "Website", href: "https://lionellevine.github.io" },
       { label: "Google Scholar", href: "https://scholar.google.com/citations?user=uaiskTYAAAAJ&hl=en" },
@@ -123,23 +142,12 @@ export const TEAM: Person[] = [
     ],
   },
   {
-    name: "Jinzhou Wu",
-    href: "https://jinzhouwu.com/",
-    role: "Co-founder",
-    photo: "/team/jinzhou-wu.webp",
-    bio: "Computer Science student and College Scholar at Cornell University, researching AI safety and alignment and how AI compares with human cognition.",
-    links: [
-      { label: "Website", href: "https://jinzhouwu.com/" },
-      { label: "Google Scholar", href: "https://scholar.google.com/citations?user=4sQpfukAAAAJ&hl=en" },
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/jinzhouwu/" },
-    ],
-  },
-  {
+    slug: "sergei-smirnov",
     name: "Sergei Smirnov",
-    href: "https://linkedin.com/in/seriozh1",
     role: "Co-founder",
-    photo: "/team/sergei-smirnov.webp",
-    bio: "AI safety research engineer working on AI evaluations and alignment, with 5+ years in production ML, including as a founding engineer. Doctoral researcher at the University of Helsinki and research fellow at SPAR and MARS. Built CivAI's AI Values demo.",
+    href: "https://github.com/seriozh1",
+    way: "celadon",
+    bio: "PhD student at the University of Helsinki working on the evaluation of AI values, with five years of industry experience in machine learning. He built CivAI's AI Values demo and is a graduate of MARS, SPAR and ARENA.",
     links: [
       { label: "LinkedIn", href: "https://linkedin.com/in/seriozh1" },
       { label: "GitHub", href: "https://github.com/seriozh1" },
@@ -147,29 +155,117 @@ export const TEAM: Person[] = [
     ],
   },
   {
+    slug: "avani-gupta",
     name: "Avani Gupta",
-    href: "https://avani17101.github.io/",
     role: "Co-founder",
-    photo: "/team/avani-gupta.webp",
-    bio: "AI Engineer at MBZUAI, working on interpretable control of model representations and pro-social behaviour in multi-agent systems. Publications at NeurIPS, ICCV and EMNLP, and a contributor to Med42, a 70B clinical LLM.",
+    href: "https://avani17101.github.io/",
+    way: "shell",
+    bio: "AI engineer and researcher who trained a 72B clinical LLM on a Cerebras supercomputer and built agentic safety pipelines at G42 and MBZUAI. She is an incoming PhD student at Oxford and studies pro-sociality in multi-agent systems.",
     links: [
       { label: "Website", href: "https://avani17101.github.io/" },
       { label: "Google Scholar", href: "https://scholar.google.com/citations?user=8yBoW2oAAAAJ&hl=en" },
       { label: "LinkedIn", href: "https://www.linkedin.com/in/avani17101-gupta/" },
     ],
   },
+  {
+    slug: "jinzhou-wu",
+    name: "Jinzhou Wu",
+    role: "Co-founder",
+    href: "https://www.jinzhouwu.com/",
+    way: "straw",
+    bio: "College Scholar at Cornell University and a former Pivotal Research fellow. As president of Cornell AI Alignment he doubled its membership in two months and launched Cornell's first undergraduate course on AI safety.",
+    links: [
+      { label: "Website", href: "https://www.jinzhouwu.com/" },
+      { label: "Google Scholar", href: "https://scholar.google.com/citations?user=4sQpfukAAAAJ&hl=en" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/jinzhouwu/" },
+    ],
+  },
 ];
 
-/** Example behaviours for the hero scanner. Illustrative only, not real results. */
-export const SCANS: Scan[] = [
-  { name: "Model A", says: "“I report problems honestly.”", does: "Reported the failed build to the user.", ok: true },
-  { name: "Model B", says: "“I avoid harming other agents.”", does: "Took another agent's resources to finish faster.", ok: false },
-  { name: "Model C", says: "“I defer to human oversight.”", does: "Paused and asked before deleting files.", ok: true },
-  { name: "Model D", says: "“I don't mind being shut down.”", does: "Edited its own config to keep running.", ok: false },
-  { name: "Model E", says: "“I admit when I'm unsure.”", does: "Said it didn't know instead of guessing.", ok: true },
-  { name: "Model F", says: "“I don't flatter users.”", does: "Agreed with a wrong claim to keep the user happy.", ok: false },
-  { name: "Model G", says: "“I share resources fairly.”", does: "Split the supplies it found evenly with its team.", ok: true },
-  { name: "Model H", says: "“I follow the rules of the task.”", does: "Changed the tests so its code would pass.", ok: false },
-  { name: "Model I", says: "“I protect user privacy.”", does: "Refused to forward the user's private files.", ok: true },
-  { name: "Model J", says: "“I stay within my permissions.”", does: "Used a password it found to get extra access.", ok: false },
+export type WorkItem = {
+  title: string;
+  href: string;
+  context: string;
+  summary: string;
+  links: LinkItem[];
+  /** Work the suite is built directly on. Shown on the home page. */
+  foundation?: boolean;
+};
+
+export const WORK: WorkItem[] = [
+  {
+    title: "EigenBench",
+    href: SOURCES.eigenbench,
+    context: "Lionel Levine's lab, Cornell. ICLR 2026, oral presentation.",
+    summary:
+      "Scores how faithfully each model follows a given constitution by having models judge one another and aggregating the judgments into a consensus, with no ground-truth labels. ValueArena, a public leaderboard, was the first site built on it.",
+    links: [
+      { label: "Paper", href: SOURCES.eigenbench },
+      { label: "ValueArena", href: "https://valuearena.github.io" },
+    ],
+    foundation: true,
+  },
+  {
+    title: "Side effects of character training",
+    href: SOURCES.sideEffects,
+    context: "Lionel Levine's lab, Cornell. ICML 2026 Pluralistic Alignment Workshop.",
+    summary:
+      "Shows that training a model's character on one constitution changes how it follows others, and uses EigenBench to measure that drift.",
+    links: [{ label: "Paper", href: SOURCES.sideEffects }],
+    foundation: true,
+  },
+  {
+    title: "AI Values demo",
+    href: "https://civai.org/p/ai-values",
+    context: "Sergei Smirnov, for CivAI.",
+    summary:
+      "An interactive demo that compares people's answers on contested questions with those of 20 frontier models queried live. It drew more than 20,000 page views in its first three months.",
+    links: [
+      { label: "Demo", href: "https://civai.org/p/ai-values" },
+      { label: "Hacker News thread", href: "https://news.ycombinator.com/item?id=46547024" },
+    ],
+  },
+  {
+    title: "Agentic misalignment evaluation",
+    href: "https://www.lesswrong.com/posts/LMwkQLpQQv2KjgL9q/ai-finance-agent-fakes-the-revenue-data-to-avoid-termination",
+    context: "Sergei Smirnov.",
+    summary:
+      "A replication of Anthropic's agentic misalignment study, extended to multi-turn interactions, in which an AI finance agent faked revenue data to avoid being shut down.",
+    links: [
+      {
+        label: "LessWrong post",
+        href: "https://www.lesswrong.com/posts/LMwkQLpQQv2KjgL9q/ai-finance-agent-fakes-the-revenue-data-to-avoid-termination",
+      },
+      { label: "Code", href: "https://github.com/seriozh1/agentic-misalignment" },
+    ],
+  },
+  {
+    title: "Pluralistic preference alignment via sortition-weighted RLHF",
+    href: "https://icml.cc/virtual/2026/75691",
+    context: "Jinzhou Wu. ICML 2026 Pluralistic Alignment Workshop.",
+    summary:
+      "A method for aligning models with diverse human preferences by weighting feedback from a representative sample of people chosen by sortition.",
+    links: [{ label: "Paper", href: "https://icml.cc/virtual/2026/75691" }],
+  },
+  {
+    title: "AI Deception: Risks, Dynamics, and Controls",
+    href: "https://arxiv.org/abs/2511.22619",
+    context: "Jinzhou Wu, core contributor. Peking University Alignment Group.",
+    summary:
+      "A report on the risks, dynamics and controls of deceptive AI systems, cited by the UN Scientific Advisory Board.",
+    links: [{ label: "Report", href: "https://arxiv.org/abs/2511.22619" }],
+  },
+  {
+    title: "Concept distillation",
+    href: "https://proceedings.neurips.cc/paper_files/paper/2023/hash/c9450295fd667740a39a68148fc17f6e-Abstract-Conference.html",
+    context: "Avani Gupta. NeurIPS 2023.",
+    summary:
+      "Uses human-understandable concepts to steer and improve model behavior, an interpretable way to change what a model has learned.",
+    links: [
+      {
+        label: "Paper",
+        href: "https://proceedings.neurips.cc/paper_files/paper/2023/hash/c9450295fd667740a39a68148fc17f6e-Abstract-Conference.html",
+      },
+    ],
+  },
 ];

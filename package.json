@@ -1,12 +1,14 @@
 {
   "name": "aici",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
+  "description": "Website for the AI Character Institute",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "start": "npx serve out",
+    "lint": "eslint",
+    "sync:results": "node scripts/sync-results.mjs"
   },
   "dependencies": {
     "next": "16.4.6",
@@ -14,17 +16,14 @@
     "react-dom": "19.3.0"
   },
   "devDependencies": {
-    "@tailwindcss/turbopack": "4.3.3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
-    "tailwindcss": "4.3.3",
     "typescript": "^5"
   },
   "engines": {
     "node": ">=20.9.0"
-  },
-  "description": "Website for the AI Character Institute"
+  }
 }
