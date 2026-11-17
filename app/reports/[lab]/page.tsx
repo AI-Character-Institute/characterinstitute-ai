@@ -63,7 +63,7 @@ export default async function LabPage({ params }: Params) {
               })}
               <p>
                 Scores are relative to the other models in each panel, and a closer fit is not always a better result.{" "}
-                <Link href="/results/#reading">How to read a score</Link>.
+                <Link href="/results/#reading">Reading the scores</Link>.
               </p>
             </div>
           </div>
@@ -197,7 +197,7 @@ export default async function LabPage({ params }: Params) {
       )}
 
       <section className="band wrap split is-last" aria-labelledby="next">
-        <h2 id="next">What a full report will add</h2>
+        <h2 id="next">Planned additions</h2>
         <div className="prose">
           <p>
             The preview can only describe fit to general constitutions. The reports we are building toward will score

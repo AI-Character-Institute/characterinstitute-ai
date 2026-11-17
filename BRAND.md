@@ -65,6 +65,7 @@ Avoid verdict words about models and labs: safe, unsafe, aligned, misaligned, be
 
 - American English. "Non-profit" is hyphenated.
 - Sentence case for every heading, label and button.
+- Headings are summary phrases, such as "Preview results" or "Measures of character". A heading is never a question or a full sentence.
 - No all-caps labels, no exclamation marks, and no arrows in link text.
 - Scores are whole numbers. Intervals read "1529 to 1587".
 - Dates are written out: November 16, 2026. Panels are named by month: the August 2026 panel.
@@ -115,7 +116,7 @@ Rules:
 
 | Role | Face | Use |
 | --- | --- | --- |
-| Serif | Baskervville, regular and italic | Headings, the wordmark, figure titles, italic for questions and attributions |
+| Serif | Baskervville, regular and italic | Headings, the wordmark, figure titles, italic for definitions and attributions |
 | Sans | Public Sans | Body text, interface, tables and all numbers in data |
 
 In a well-known New York Times experiment, readers were slightly more likely to believe a statement set in Baskerville than in other faces. It is also a face that was first cut by hand as steel punches, which is the oldest meaning of *character*. Public Sans is plain and public-spirited, and its figures line up in tables. Both are free on Google Fonts.

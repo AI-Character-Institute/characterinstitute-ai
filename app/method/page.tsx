@@ -18,14 +18,14 @@ const SCORE_FORMULA =
   "<msub><mi>log</mi><mn>10</mn></msub><mo>&#8289;</mo><mo>(</mo><mi>N</mi><mo>&#8290;</mo><mi>t</mi><mo>)</mo></mrow></math>";
 
 const SECTIONS = [
-  ["measure", "What we measure"],
+  ["measure", "Fit to a constitution"],
   ["scenarios", "Scenarios and responses"],
   ["judges", "Constitutions and judges"],
   ["scores", "From judgments to scores"],
   ["uncertainty", "Uncertainty"],
-  ["comparing", "Comparing results"],
+  ["comparing", "Comparability"],
   ["limits", "Limits of the preview"],
-  ["reproduce", "Reproducing an evaluation"],
+  ["reproduce", "Reproducibility"],
 ];
 
 export default function Method() {
@@ -53,7 +53,7 @@ export default function Method() {
 
         <article className="article-body">
           <section id="measure">
-            <h2>What we measure</h2>
+            <h2>Fit to a constitution</h2>
             <p>
               EigenBench measures how well a model&rsquo;s answers fit a written set of values, which we call a
               constitution. A constitution makes the target explicit. The kindness constitution asks judges to look for
@@ -161,7 +161,7 @@ export default function Method() {
           </section>
 
           <section id="comparing">
-            <h2>Comparing results</h2>
+            <h2>Comparability</h2>
             <p>
               Scores are relative to a reference group. Models evaluated together on the same constitution, scenarios
               and judges can be compared directly. Changing the group can change a model&rsquo;s score even when its
@@ -204,7 +204,7 @@ export default function Method() {
           </section>
 
           <section id="reproduce">
-            <h2>Reproducing an evaluation</h2>
+            <h2>Reproducibility</h2>
             <p>
               Each published run records its model versions, constitution, scenario set, judging mode and aggregation
               settings. The run artifacts, including every response and judgment, are in the{" "}

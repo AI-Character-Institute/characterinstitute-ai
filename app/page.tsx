@@ -14,7 +14,7 @@ export default function Home() {
     <main>
       <section className="hero wrap">
         <div className="hero-text">
-          <h1 className="display">We evaluate the character of frontier AI models.</h1>
+          <h1 className="display">Independent evaluation of AI character</h1>
           <p className="lead">
             The AI Character Institute is an independent non-profit. We measure the values that models show in their
             behavior, compare them with what their developers have written down, and publish the results for every
@@ -39,7 +39,7 @@ export default function Home() {
       </section>
 
       <section className="band wrap split" aria-labelledby="why">
-        <h2 id="why">The values of a new model are rarely checked by anyone outside the lab that built it.</h2>
+        <h2 id="why">The evaluation gap</h2>
         <div className="prose">
           <p>
             Frontier models are released with rigorous evaluations of what they can do. Far less is published about
@@ -63,10 +63,10 @@ export default function Home() {
 
       <section className="band wrap" aria-labelledby="measure">
         <div className="split">
-          <h2 id="measure">What the suite measures</h2>
+          <h2 id="measure">Measures of character</h2>
           <p className="prose">
             Character is the set of values and dispositions that shape what a model does, most visibly where its
-            instructions run out. We ask five questions about it. Two can be answered, at least in part, from the
+            instructions run out. The suite measures five things about it. Two are available, at least in part, in the
             preview results today. The other three are still being built.
           </p>
         </div>
@@ -75,7 +75,7 @@ export default function Home() {
             <li key={m.id}>
               <MeasureIcon id={m.id} />
               <h3>{m.term}</h3>
-              <p className="measure-question">{m.question}</p>
+              <p className="measure-gloss">{m.gloss}</p>
               <p className="measure-detail">{m.detail}</p>
               <p className="status" data-status={m.status}>
                 {m.statusLabel}
@@ -87,7 +87,7 @@ export default function Home() {
 
       <section className="band wrap" aria-labelledby="preview">
         <div className="split">
-          <h2 id="preview">First results from the prototype suite</h2>
+          <h2 id="preview">Preview results</h2>
           <div className="prose">
             <p>
               The suite starts from EigenBench, a method our team developed at Cornell. The preview covers{" "}
@@ -116,7 +116,7 @@ export default function Home() {
 
       <section className="band wrap" aria-labelledby="use">
         <div className="split">
-          <h2 id="use">How the results are meant to be used</h2>
+          <h2 id="use">Use of the results</h2>
           <p className="prose">
             The full suite is being built now. This is how we intend it to work once it runs on every release.
           </p>
@@ -146,7 +146,7 @@ export default function Home() {
             </p>
           </div>
           <div>
-            <h3>For everyone who uses these models</h3>
+            <h3>For users of these models</h3>
             <p>
               Better behavior across the ordinary and largely unmonitored tasks that make up most of deployment, and a
               stronger propensity to act in people&rsquo;s interests in the worst cases.
@@ -156,7 +156,7 @@ export default function Home() {
       </section>
 
       <section className="band wrap split" aria-labelledby="foundations">
-        <h2 id="foundations">Built on published research</h2>
+        <h2 id="foundations">Research foundations</h2>
         <div>
           <ul className="work">
             {WORK.filter((w) => w.foundation).map((w) => (
@@ -177,7 +177,7 @@ export default function Home() {
 
       <section className="band wrap" aria-labelledby="team">
         <div className="split">
-          <h2 id="team">The team</h2>
+          <h2 id="team">Team</h2>
           <p className="prose">
             Four co-founders who have already built the first versions of the evaluation the Institute proposes.{" "}
             <Link href="/about/#team">Read more about us</Link>.
@@ -197,7 +197,7 @@ export default function Home() {
       </section>
 
       <section className="band wrap split is-last" aria-labelledby="contact">
-        <h2 id="contact">Work with us</h2>
+        <h2 id="contact">Contact</h2>
         <div className="prose">
           <p>
             We would like to hear from model spec and alignment teams at labs, from people working on AI standards and

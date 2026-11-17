@@ -18,7 +18,7 @@ export default function About() {
       </header>
 
       <section className="band wrap split is-first" aria-labelledby="principles">
-        <h2 id="principles">How we intend to work</h2>
+        <h2 id="principles">Working principles</h2>
         <dl className="principles">
           <div>
             <dt>Independent</dt>
@@ -49,7 +49,7 @@ export default function About() {
             </dd>
           </div>
           <div>
-            <dt>Fair to the people we evaluate</dt>
+            <dt>Fair</dt>
             <dd>
               Each lab&rsquo;s model spec team sees its results before they are published, and we correct the record
               when we are shown to be wrong.

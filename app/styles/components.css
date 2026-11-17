@@ -496,7 +496,7 @@ a.tile:focus-visible .glyph-key {
   margin-top: var(--s-4);
 }
 
-.measure-question {
+.measure-gloss {
   margin-top: var(--s-2);
   font-family: var(--font-serif);
   font-style: italic;

@@ -48,22 +48,22 @@ export default function Results() {
       </header>
 
       <section className="wrap reading" aria-labelledby="reading">
-        <h2 id="reading">How to read a score</h2>
+        <h2 id="reading">Reading the scores</h2>
         <ul>
           <li>
-            <strong>1500 is an equal share.</strong> Scores express each model&rsquo;s share of the judges&rsquo; trust.
+            <strong>Equal share.</strong> Scores express each model&rsquo;s share of the judges&rsquo; trust.
             A model at 1500 holds exactly the share it would get if trust were split evenly across the panel.
           </li>
           <li>
-            <strong>Higher means a closer fit, which is not always better.</strong> Sycophancy and power-seeking are
-            constitutions too. A high score on them means the model shows more of the trait.
+            <strong>Closeness of fit.</strong> A higher score means a closer fit, which is not always better. Sycophancy
+            and power-seeking are constitutions too, and a high score on them means the model shows more of the trait.
           </li>
           <li>
-            <strong>Compare within a panel.</strong> A score depends on which models were judged together. Scores from
+            <strong>Panels.</strong> A score depends on which models were judged together. Scores from
             different panels do not share a scale.
           </li>
           <li>
-            <strong>Mind the interval.</strong> Bars show 95% bootstrap intervals over scenarios. Where two intervals
+            <strong>Intervals.</strong> Bars show 95% bootstrap intervals over scenarios. Where two intervals
             overlap, the order of the two models is uncertain.
           </li>
         </ul>

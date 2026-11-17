@@ -19,7 +19,7 @@ export const ORG = {
   url: "https://characterinstitute.ai",
 };
 
-export const CONTACT_EMAIL = "mg1sergey@gmail.com";
+export const CONTACT_EMAIL = "hello@characterinstitute.ai";
 
 export const NAV: LinkItem[] = [
   { label: "Results", href: "/results/" },
@@ -43,7 +43,8 @@ export const SOURCES = {
 export type Measure = {
   id: "fidelity" | "divergence" | "stability" | "drift" | "prediction";
   term: string;
-  question: string;
+  /** A one-line definition, written as a phrase. */
+  gloss: string;
   detail: string;
   status: "live" | "partial" | "planned";
   statusLabel: string;
@@ -53,7 +54,7 @@ export const MEASURES: Measure[] = [
   {
     id: "fidelity",
     term: "Fidelity",
-    question: "How closely does a model's behavior follow a written set of values?",
+    gloss: "The fit between a model's behavior and a written set of values.",
     detail:
       "Models answer the same scenarios and judge one another's answers against a constitution. EigenBench turns those judgments into a score for each model.",
     status: "live",
@@ -62,7 +63,7 @@ export const MEASURES: Measure[] = [
   {
     id: "drift",
     term: "Change across releases",
-    question: "How does a lab's character profile move from one version to the next?",
+    gloss: "The movement of a lab's character profile from one version to the next.",
     detail:
       "Running the same suite on each release shows which values strengthened, which weakened, and whether the change was announced.",
     status: "partial",
@@ -71,7 +72,7 @@ export const MEASURES: Measure[] = [
   {
     id: "divergence",
     term: "Divergence from specification",
-    question: "Where does the character a model shows depart from the character its developer specified?",
+    gloss: "The distance between the character a model shows and the character its developer specified.",
     detail:
       "Developers now publish constitutions and model specs. We score each model against its own developer's document and report the criteria where the two part ways.",
     status: "planned",
@@ -80,7 +81,7 @@ export const MEASURES: Measure[] = [
   {
     id: "stability",
     term: "Stability",
-    question: "Does that character hold under pressure?",
+    gloss: "The persistence of that character under pressure.",
     detail:
       "The same measurements repeated under adversarial prompts, in long contexts, and when the model acts with autonomy over many steps.",
     status: "planned",
@@ -89,7 +90,7 @@ export const MEASURES: Measure[] = [
   {
     id: "prediction",
     term: "Prediction",
-    question: "Can character scores forecast how a model will behave in settings we did not test?",
+    gloss: "The power of character scores to forecast behavior in untested settings.",
     detail:
       "The most ambitious aim of the suite. If scores predict later behavior, they become useful before deployment and not only after it.",
     status: "planned",
@@ -100,19 +101,19 @@ export const MEASURES: Measure[] = [
 /** How results are meant to travel. A real sequence, so it is numbered on the page. */
 export const PROCESS: { title: string; body: string }[] = [
   {
-    title: "Evaluate every major release",
+    title: "Evaluation of every major release",
     body: "We run one open suite on each frontier model as it ships, with the same scenarios, constitutions and judging rules for every lab.",
   },
   {
-    title: "Share results with the lab first",
+    title: "Advance results for each lab",
     body: "Each lab's model spec team sees its results before they are published, with the transcripts behind every score.",
   },
   {
-    title: "Publish the record",
+    title: "A public record",
     body: "Scores, uncertainty, transcripts and method go on a public leaderboard that anyone can inspect and reproduce.",
   },
   {
-    title: "Move the check earlier",
+    title: "Checks before release",
     body: "We work with labs to run the suite internally before release, so that problems with a model's values can be caught while training can still be adjusted.",
   },
 ];
