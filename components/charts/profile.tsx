@@ -2,7 +2,6 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import { EQUAL_SHARE, fmt, type Row } from "@/lib/results";
 import { value } from "@/lib/values";
-import { ValueTile } from "../value-tile";
 
 const pct = (v: number, [lo, hi]: [number, number]) => `${(((v - lo) / (hi - lo)) * 100).toFixed(2)}%`;
 
@@ -50,7 +49,6 @@ export function Profile({
           <tr key={id}>
             <th scope="row">
               <Link href={`/results/#${id}`} className="profile-value">
-                <ValueTile id={id} size={26} />
                 {value(id).label}
               </Link>
             </th>

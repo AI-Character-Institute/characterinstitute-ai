@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { EQUAL_SHARE, fmt, labLabel, type Panel } from "@/lib/results";
 import { value } from "@/lib/values";
-import { ValueTile } from "../value-tile";
 
 /** Seven steps either side of an equal share. Step 0 is the neutral middle. */
 export function step(score: number) {
@@ -38,7 +37,6 @@ export function Matrix({ panel, highlight }: { panel: Panel; highlight?: string[
             {values.map((id) => (
               <th scope="col" key={id}>
                 <Link href={`/results/#${id}`} className="matrix-head">
-                  <ValueTile id={id} size={30} />
                   <span>{value(id).label}</span>
                 </Link>
               </th>

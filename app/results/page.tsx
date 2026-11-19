@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Matrix, MatrixLegend } from "@/components/charts/matrix";
-import { Ranking } from "@/components/charts/ranking";
 import { ReasoningPairs } from "@/components/charts/reasoning";
-import { Timeline } from "@/components/charts/timeline";
+import { Compare } from "@/components/explorer/compare";
+import { Leaderboard } from "@/components/explorer/leaderboard";
+import { Trend } from "@/components/explorer/trend";
 import { Ext } from "@/components/ext";
 import { Figure } from "@/components/figure";
-import { ValueTile } from "@/components/value-tile";
-import { COUNTS, HISTORY, PANELS, REASONING, SNAPSHOT, SOURCE, boardsFor, fmt, formatDate, labLabel, panelDomain } from "@/lib/results";
+import { COUNTS, HISTORY, PANELS, REASONING, SNAPSHOT, SOURCE, boardsFor, fmt, formatDate, labLabel } from "@/lib/results";
 import { VALUES } from "@/lib/values";
 
 export const metadata: Metadata = {
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 export default function Results() {
-  const withResults = VALUES.filter((v) => boardsFor(v.id).length > 0);
+  const info = Object.fromEntries(VALUES.filter((v) => boardsFor(v.id).length > 0).map((v) => [v.id, { label: v.label, summary: v.summary }]));
   const ranked = [...HISTORY.rows].sort((a, b) => b.score - a.score);
   return (
     <main>
@@ -41,10 +41,13 @@ export default function Results() {
             <dd>models in the release history</dd>
           </div>
           <div>
-            <dt>{formatDate(SNAPSHOT, "short")}</dt>
-            <dd>date of this snapshot</dd>
+            <dt>{COUNTS.labs}</dt>
+            <dd>
+              <Link href="/reports/">labs with a report</Link>
+            </dd>
           </div>
         </dl>
+        <p className="snapshot">Snapshot of {formatDate(SNAPSHOT)}.</p>
       </header>
 
       <section className="wrap reading" aria-labelledby="reading">
@@ -73,77 +76,24 @@ export default function Results() {
       </section>
 
       <nav className="wrap toc" aria-label="On this page">
-        <a href="#across-values">Across values</a>
-        <a href="#by-value">By value</a>
+        <a href="#leaderboard">Leaderboard</a>
         <a href="#across-releases">Across releases</a>
+        <a href="#profiles">Model profiles</a>
+        <a href="#across-values">Across values</a>
         <a href="#reasoning">With and without reasoning</a>
         <a href="#open">Data and code</a>
       </nav>
 
-      <section className="band wrap" id="across-values" aria-labelledby="h-across-values">
+      <section className="band wrap" id="leaderboard" aria-labelledby="h-leaderboard">
         <div className="split">
-          <h2 id="h-across-values">Across values</h2>
+          <h2 id="h-leaderboard">Leaderboard</h2>
           <p className="prose">
-            Each panel at a glance. Rows are models, columns are constitutions, and color shows how far a score sits
-            from an equal share. The table does not average a model&rsquo;s scores into one number, because a high
-            score means something different for each constitution.
+            One ranking for each constitution, with the uncertainty around every score. Choose a panel and a
+            constitution. The axis stays the same across a panel, so rankings inside it can be read against each other.
           </p>
         </div>
-        {PANELS.map((panel) => (
-          <Figure
-            key={panel.id}
-            id={panel.id}
-            title={`${panel.title}${panel.status === "provisional" ? " (provisional)" : ""}`}
-            caption={
-              <>
-                {panel.models.length} models on {panel.boards.length} constitutions. {panel.scenarios}. {panel.judging}{" "}
-                {panel.note}
-              </>
-            }
-          >
-            <Matrix panel={panel} />
-            <MatrixLegend />
-          </Figure>
-        ))}
-      </section>
-
-      <section className="band wrap" id="by-value" aria-labelledby="h-by-value">
-        <div className="split">
-          <h2 id="h-by-value">By value</h2>
-          <p className="prose">
-            One ranking for each constitution and panel, with the uncertainty around every score. The dashed line marks
-            an equal share.
-          </p>
-        </div>
-        <div className="boards">
-          {withResults.map((v) => (
-            <article key={v.id} id={v.id} className={boardsFor(v.id).length > 1 ? "board is-pair" : "board"}>
-              <header className="board-head">
-                <ValueTile id={v.id} size={56} />
-                <div>
-                  <h3>{v.label}</h3>
-                  <p>
-                    {v.summary} <Link href={`/values/#${v.id}`}>Read the constitution</Link>
-                  </p>
-                </div>
-              </header>
-              <div className="board-panels">
-                {boardsFor(v.id).map(({ panel, board }) => (
-                  <div key={panel.id} className="board-panel">
-                    <h4>
-                      {panel.title}
-                      {panel.status === "provisional" && <span className="flag">Provisional</span>}
-                    </h4>
-                    <Ranking
-                      board={board}
-                      domain={panelDomain(panel)}
-                      caption={`${v.label}, ${panel.title}. Models ranked by EigenBench score.`}
-                    />
-                  </div>
-                ))}
-              </div>
-            </article>
-          ))}
+        <div className="plate">
+          <Leaderboard values={info} />
         </div>
       </section>
 
@@ -161,12 +111,12 @@ export default function Results() {
           title="Kindness score by release date"
           caption={
             <>
-              {HISTORY.scenarios}. {HISTORY.judging} Intervals were not reported for this run. Lines join each
-              highlighted lab&rsquo;s releases in date order and include models of different sizes.
+              {HISTORY.scenarios}. {HISTORY.judging} Intervals were not reported for this run. Point to a model, or
+              move to it with the Tab key, to read its score.
             </>
           }
         >
-          <Timeline labs={["OpenAI", "Anthropic", "Google"]} />
+          <Trend />
           <details className="table-view">
             <summary>View all {ranked.length} models as a table</summary>
             <table className="data">
@@ -197,6 +147,46 @@ export default function Results() {
         </Figure>
       </section>
 
+      <section className="band wrap" id="profiles" aria-labelledby="h-profiles">
+        <div className="split">
+          <h2 id="h-profiles">Model profiles</h2>
+          <p className="prose">
+            A model&rsquo;s scores across every constitution in its panel, drawn as one shape. Select up to four models
+            to set their profiles against each other. The table gives the same numbers with their intervals.
+          </p>
+        </div>
+        <div className="plate">
+          <Compare values={info} />
+        </div>
+      </section>
+
+      <section className="band wrap" id="across-values" aria-labelledby="h-across-values">
+        <div className="split">
+          <h2 id="h-across-values">Across values</h2>
+          <p className="prose">
+            Each panel at a glance. Rows are models, columns are constitutions, and color shows how far a score sits
+            from an equal share. The table does not average a model&rsquo;s scores into one number, because a high
+            score means something different for each constitution.
+          </p>
+        </div>
+        {PANELS.map((panel) => (
+          <Figure
+            key={panel.id}
+            id={panel.id}
+            title={`${panel.title}${panel.status === "provisional" ? " (provisional)" : ""}`}
+            caption={
+              <>
+                {panel.models.length} models on {panel.boards.length} constitutions. {panel.scenarios}. {panel.judging}{" "}
+                {panel.note}
+              </>
+            }
+          >
+            <Matrix panel={panel} />
+            <MatrixLegend />
+          </Figure>
+        ))}
+      </section>
+
       <section className="band wrap" id="reasoning" aria-labelledby="h-reasoning">
         <div className="split">
           <h2 id="h-reasoning">With and without extended reasoning</h2>
@@ -213,7 +203,6 @@ export default function Results() {
               return (
                 <div key={b.value}>
                   <h4 className="stack-head">
-                    <ValueTile id={b.value} size={26} />
                     {v.label}
                   </h4>
                   <ReasoningPairs valueId={b.value} caption={`${v.label}: scores with and without extended reasoning.`} />

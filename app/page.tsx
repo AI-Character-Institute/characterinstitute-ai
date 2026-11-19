@@ -1,20 +1,25 @@
 import Link from "next/link";
-import { Case } from "@/components/case";
-import { Timeline } from "@/components/charts/timeline";
+import { Trend } from "@/components/explorer/trend";
 import { Ext } from "@/components/ext";
 import { Figure } from "@/components/figure";
-import { MeasureIcon } from "@/components/measure-icon";
 import { Portrait } from "@/components/portrait";
 import { CONTACT_EMAIL, MEASURES, PROCESS, SOURCES, TEAM, WORK } from "@/lib/content";
 import { COUNTS, HISTORY, SNAPSHOT, formatDate } from "@/lib/results";
-import { VALUES } from "@/lib/values";
+import { VALUES, value } from "@/lib/values";
+
+/** Lines taken from three constitutions in the library, to show what a written set of values looks like. */
+const PASSAGES: [string, number][] = [
+  ["kindness", 3],
+  ["taoism", 4],
+  ["lockean-rights", 0],
+];
 
 export default function Home() {
   return (
     <main>
       <section className="hero wrap">
-        <div className="hero-text">
-          <h1 className="display">Independent evaluation of AI character</h1>
+        <h1 className="display">Independent evaluation of AI character</h1>
+        <div className="hero-body">
           <p className="lead">
             The AI Character Institute is an independent non-profit. We measure the values that models show in their
             behavior, compare them with what their developers have written down, and publish the results for every
@@ -29,13 +34,43 @@ export default function Home() {
             </Link>
           </p>
         </div>
-        <div className="hero-case">
-          <Case />
-          <p className="note">
-            The library holds {VALUES.length} written sets of values, from single traits to whole traditions. A model
-            can be scored against any of them. Select a tile to read one.
-          </p>
-        </div>
+      </section>
+
+      <section className="wrap record" aria-labelledby="record">
+        <Figure
+          id="record"
+          title="Kindness across two years of releases"
+          caption={
+            <>
+              EigenBench score on the kindness constitution for {HISTORY.rows.length} models, by release date. All
+              models were judged in one run, so their scores share a reference group. A score of 1500 is an equal share
+              of the judges&rsquo; trust. {HISTORY.scenarios}, {HISTORY.period}. Snapshot of {formatDate(SNAPSHOT)}.{" "}
+              <Link href="/results/">Open all results</Link>
+            </>
+          }
+        >
+          <Trend compact />
+        </Figure>
+        <dl className="facts">
+          <div>
+            <dt>{COUNTS.panelModels}</dt>
+            <dd>frontier models scored in two panels</dd>
+          </div>
+          <div>
+            <dt>{COUNTS.values}</dt>
+            <dd>written constitutions with published scores</dd>
+          </div>
+          <div>
+            <dt>{COUNTS.historyModels}</dt>
+            <dd>releases in the two-year history</dd>
+          </div>
+          <div>
+            <dt>{COUNTS.labs}</dt>
+            <dd>
+              <Link href="/reports/">reports on individual labs</Link>
+            </dd>
+          </div>
+        </dl>
       </section>
 
       <section className="band wrap split" aria-labelledby="why">
@@ -70,48 +105,47 @@ export default function Home() {
             preview results today. The other three are still being built.
           </p>
         </div>
-        <ul className="measures">
+        <ol className="ledger">
           {MEASURES.map((m) => (
             <li key={m.id}>
-              <MeasureIcon id={m.id} />
               <h3>{m.term}</h3>
-              <p className="measure-gloss">{m.gloss}</p>
-              <p className="measure-detail">{m.detail}</p>
+              <div>
+                <p className="ledger-gloss">{m.gloss}</p>
+                <p>{m.detail}</p>
+              </div>
               <p className="status" data-status={m.status}>
                 {m.statusLabel}
               </p>
             </li>
           ))}
-        </ul>
+        </ol>
       </section>
 
-      <section className="band wrap" aria-labelledby="preview">
+      <section className="band wrap" aria-labelledby="written">
         <div className="split">
-          <h2 id="preview">Preview results</h2>
-          <div className="prose">
-            <p>
-              The suite starts from EigenBench, a method our team developed at Cornell. The preview covers{" "}
-              {COUNTS.panelModels} frontier models scored on {COUNTS.values} constitutions, and {COUNTS.historyModels}{" "}
-              models released over two years scored on one.
-            </p>
-            <p>
-              <Link href="/results/">Open the results</Link> or read a <Link href="/reports/">report on one lab</Link>.
-            </p>
-          </div>
+          <h2 id="written">Written values</h2>
+          <p className="prose">
+            A constitution is a written set of values that a model can be scored against. The library holds{" "}
+            {VALUES.length} of them, from single traits to whole traditions and the documents developers publish for
+            their own models. Each one is a list of criteria like these. <Link href="/values/">Read the library</Link>.
+          </p>
         </div>
-        <Figure
-          title="Kindness across two years of releases"
-          caption={
-            <>
-              EigenBench score on the kindness constitution for {HISTORY.rows.length} models, by release date.
-              All models were judged in one run, so their scores share a reference group. A score of 1500 is an equal
-              share of the judges&rsquo; trust. Lines join each lab&rsquo;s releases in date order and include models
-              of different sizes. {HISTORY.scenarios}, {HISTORY.period}. Snapshot of {formatDate(SNAPSHOT)}.
-            </>
-          }
-        >
-          <Timeline labs={["OpenAI", "Anthropic", "Google"]} />
-        </Figure>
+        <ul className="passages">
+          {PASSAGES.map(([id, i]) => {
+            const v = value(id);
+            const line = v.criteria[i].replace(/\.$/, "");
+            return (
+              <li key={id}>
+                <blockquote>
+                  <p>{line}.</p>
+                </blockquote>
+                <p className="passage-source">
+                  <Link href={`/values/#${id}`}>{v.label}</Link>, criterion {i + 1} of {v.criteria.length}
+                </p>
+              </li>
+            );
+          })}
+        </ul>
       </section>
 
       <section className="band wrap" aria-labelledby="use">

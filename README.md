@@ -19,15 +19,15 @@ npm run start      # serves out/ locally
 | Path | What it holds |
 | --- | --- |
 | `lib/content.ts` | Editable copy: navigation, the standard descriptions of the Institute, measures, team, prior work, contact email |
-| `lib/values.ts` | The values library: label, group, summary and tile colorway for each constitution |
-| `lib/glyphs.ts` | The glyph for each value and the tile colorways |
+| `lib/values.ts` | The values library: label, group and summary for each constitution |
 | `lib/results.ts` | Typed access to the results snapshot and the views derived from it (panels, lab reports) |
 | `data/results.json` | The results snapshot every chart and table is built from |
 | `data/constitutions.json` | The criteria of each constitution |
 | `data/portraits.json` | The traced silhouette of each team portrait, used for its keyline |
-| `app/styles/tokens.css` | Design tokens: color, type, space, the keyline |
-| `app/styles/*.css` | Base styles, components, charts |
-| `components/` | Mark, glyph tiles, the case, portraits, charts |
+| `app/styles/tokens.css` | Design tokens: color, type, space |
+| `app/styles/*.css` | Base styles, components, charts, and `institute.css` for page furniture and the results explorer |
+| `components/` | Mark, portraits, figures and the server-rendered charts |
+| `components/explorer/` | The interactive results views: leaderboard, kindness over time, model profiles |
 | `BRAND.md` | Brand language and the design system in prose |
 
 Pages: `/` home, `/results/`, `/reports/` and `/reports/[lab]/`, `/values/`, `/method/`, `/about/`.
@@ -55,10 +55,10 @@ It normalizes each cutout to 480 px, writes it to `public/team/`, and traces the
 ## Adding a value
 
 1. Add its criteria to `data/constitutions.json`.
-2. Add an entry to `META` in `lib/values.ts` and its id to `CASE_ORDER`.
-3. Draw its glyph in `lib/glyphs.ts`. The rules for glyphs are in `BRAND.md`.
+2. Add an entry to `META` in `lib/values.ts`.
 
 ## Notes
 
-- All charts are rendered on the server as HTML and SVG. `public/enhance.js` only adds hover tooltips, and the site reads fully without it.
+- The leaderboard, the kindness chart and the model profiles are client components in `components/explorer/`. They are rendered to HTML at build time with a default view, so the page reads without JavaScript, and each has a table of the same numbers. The other charts are rendered on the server as HTML and SVG, and `public/enhance.js` only adds hover tooltips to them.
+- A leaderboard view can be linked to: `/results/?panel=frontier-2026-10&value=sycophancy#leaderboard`.
 - Analytics are GoatCounter, loaded in `app/layout.tsx`.

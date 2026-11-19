@@ -269,96 +269,6 @@
   color: var(--sheet);
 }
 
-/* ---------- Glyphs, tiles and the case ---------- */
-
-.glyph {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1;
-}
-
-.glyph-key {
-  transform: translate(1.5px, -1.5px);
-  transition: transform var(--t-slow) var(--ease);
-}
-
-a.tile:hover .glyph-key,
-a.tile:focus-visible .glyph-key {
-  transform: none;
-}
-
-.tile {
-  position: relative;
-  display: block;
-  text-decoration: none;
-}
-
-.tile-label {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  z-index: 2;
-  padding: 0.2rem 0.5rem;
-  background: var(--ink);
-  color: var(--sheet);
-  font-size: var(--text-caption);
-  font-weight: 500;
-  line-height: 1.4;
-  white-space: nowrap;
-  opacity: 0;
-  transform: translateY(4px);
-  transition: opacity var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
-  pointer-events: none;
-}
-
-.tile:hover .tile-label,
-.tile:focus-visible .tile-label {
-  opacity: 1;
-  transform: none;
-}
-
-.case {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-}
-
-.case li {
-  position: relative;
-  animation: settle 900ms var(--ease) both;
-  animation-delay: calc(var(--i) * 26ms + 150ms);
-}
-
-.case li:hover,
-.case li:focus-within {
-  z-index: 3;
-}
-
-@keyframes settle {
-  from {
-    opacity: 0;
-    transform: translate(var(--dx), var(--dy)) rotate(var(--rot));
-  }
-}
-
-@media (min-width: 40rem) {
-  .case {
-    grid-template-columns: repeat(7, 1fr);
-  }
-
-  .case-empty:nth-last-child(-n + 2) {
-    display: none;
-  }
-}
-
-.value-tile {
-  flex: none;
-  width: 2.5rem;
-}
-
-.value-tile .glyph-key {
-  transform: translate(1.5px, -1.5px);
-}
-
 /* ---------- Hero ---------- */
 
 .hero {
@@ -377,11 +287,6 @@ a.tile:focus-visible .glyph-key {
 .hero .lead {
   margin-top: var(--s-5);
   max-width: 44ch;
-}
-
-.hero-case .note {
-  margin-top: var(--s-4);
-  max-width: 56ch;
 }
 
 @media (min-width: 60rem) {
@@ -485,31 +390,6 @@ a.tile:focus-visible .glyph-key {
 }
 
 /* ---------- Measures ---------- */
-
-.measures {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(13.5rem, 1fr));
-  gap: var(--s-7) var(--s-6);
-}
-
-.measures h3 {
-  margin-top: var(--s-4);
-}
-
-.measure-gloss {
-  margin-top: var(--s-2);
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.125rem;
-  line-height: 1.4;
-}
-
-.measure-detail {
-  margin-top: var(--s-3);
-  font-size: var(--text-small);
-  line-height: 1.55;
-  color: var(--ink-2);
-}
 
 /* A filled square is live, a half square is partial, an outline is planned. */
 .status {

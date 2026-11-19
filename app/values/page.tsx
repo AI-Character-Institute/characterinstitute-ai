@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Glyph } from "@/components/glyph";
 import { boardsFor } from "@/lib/results";
 import { GROUPS, VALUES } from "@/lib/values";
 
@@ -45,16 +44,13 @@ export default function Values() {
               const boards = boardsFor(v.id);
               return (
                 <li key={v.id} id={v.id} className="value">
-                  <span className="tile is-static">
-                    <Glyph id={v.id} way={v.way} />
-                  </span>
                   <div className="value-body">
                     <h3>{v.label}</h3>
                     <p>{v.summary}</p>
                     <p className="value-results">
                       {boards.length > 0 ? (
                         <>
-                          Scored in <Link href={`/results/#${v.id}`}>{boards.map((b) => `the ${b.panel.title}`).join(" and ")}</Link>.
+                          Scored in <Link href={`/results/?panel=${boards[0].panel.id}&value=${v.id}#leaderboard`}>{boards.map((b) => `the ${b.panel.title}`).join(" and ")}</Link>.
                         </>
                       ) : (
                         "No published panel yet."

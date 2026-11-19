@@ -8,9 +8,11 @@ The brand language and design system of the AI Character Institute: how the Inst
 
 Three things follow from this, and they organize the whole system.
 
-1. **Fill and keyline.** Every object the Institute draws is printed twice: once as a solid fill and once as an outline that sits slightly out of register. The fill stands for the character a model shows. The keyline stands for the character that was specified. The distance between them is what we measure. Where the two come into register, on hover or in a result, the model has the character it was meant to have.
-2. **The case.** A printer's case holds one character in each compartment. Ours holds one tile for each written set of values in the library, from kindness to Kantian deontology. Many grounds, many forms, one grid. The case is how the brand shows that it is plural: no single color or value represents the Institute.
-3. **The record.** The Institute's product is a public, dated, continuing record. Layouts read like a well-made report: figures have captions, numbers have intervals, and every result says when it was measured.
+1. **Words and evidence.** The Institute shows two kinds of thing: what was written down and what was measured. Values appear as passages from the constitutions themselves, set as quotations. Results appear as figures with captions, intervals and dates. There are no pictograms standing in for a value, because a symbol says less than the sentence it replaces.
+2. **The record.** The Institute's product is a public, dated, continuing record. Layouts read like a well-made report: hairline rules, generous margins, numbers with intervals, and every result saying when it was measured.
+3. **Fill and keyline.** The mark is a solid disc and an outline of the same disc, slightly out of register. The fill stands for the character a model shows. The keyline stands for the character that was specified. The distance between them is what we measure. Portraits carry the same keyline, and nothing else does.
+
+The look should feel made by people for people: a humanist serif, warm paper, real sentences and real faces. It should also be hard to mistake for one of the labs we evaluate, so it borrows nothing from their palettes.
 
 ## Positioning
 
@@ -75,42 +77,40 @@ Avoid verdict words about models and labs: safe, unsafe, aligned, misaligned, be
 
 ## Logo
 
-The mark is the idea in its simplest form: a solid disc and a keyline of the same disc, out of register by a quarter of its radius, up and to the right. Where the keyline crosses the disc it is knocked out to the ground color, so the mark holds up in a single ink.
+The mark is the idea in its simplest form: a solid disc and a keyline of the same disc, out of register up and to the right. Where the keyline crosses the disc it is knocked out to the ground color, so the mark holds up in a single ink.
 
-- **Primary.** Disc in `ink`, keyline in `lapis`, on `paper` or `sheet`.
+- **Primary.** Disc in `ink`, keyline in `accent`, on `paper` or `sheet`.
 - **One color.** Disc and keyline both in `ink`.
-- **Reversed.** Disc in `sheet`, keyline in `sky`, on `ink`.
-- **Tile.** The reversed mark on an `ink` square, for avatars, app icons and the favicon fallback.
+- **Reversed.** Disc in `sheet`, keyline in `accent-soft`, on `ink`.
+- **Tile.** The reversed mark on an `ink` square, for avatars, app icons and the favicon.
 - **Wordmark.** "AI Character Institute" in Baskervville Medium, sentence case, tracked at -0.01em. In the lockup the mark sits to the left at 1.3 times the cap height, with a gap of half the mark's width.
 
-Keep clear space of half the mark's width on every side. Do not use the mark smaller than 16 px. Do not redraw the offset, rotate the mark, fill the keyline, or set the wordmark in another face. The mark may be printed in any single pigment when a piece calls for it. `lapis` is the default.
+Keep clear space of half the mark's width on every side. Do not use the mark smaller than 16 px. Do not redraw the offset, rotate the mark, fill the keyline, or set the wordmark in another face.
 
-Files are in `assets/Logos`.
+Files are in `public/brand`.
 
 ## Color
 
-The ground is ledger paper and the text is blue-black ink. One signal color, lapis, is reserved for keylines, links and reference lines. The pigments belong to tiles and to data marks and never color text.
+The palette comes from a struck coin, the first meaning of *character*: limestone paper, a warm black ink, the verdigris of old bronze as the one signal color, and bronze as its counterweight in data. A page is paper, ink and verdigris. Other colors appear only inside charts.
 
 | Token | Value | Use |
 | --- | --- | --- |
-| `paper` | #eef0eb | Page background |
-| `sheet` | #f9faf6 | Raised surfaces: figures, plates, light forms on tiles |
-| `ink` | #141b2d | Text, solid forms, the footer ground |
-| `ink-2` | #404860 | Secondary text and captions |
-| `ink-3` | #5c6479 | Tertiary text, axis labels |
-| `rule` | #cfd3d0 | Hairlines |
-| `lapis` | #2742d4 | Keylines, link underlines, reference lines, first data series |
-| `cinnabar` | #d9432b | Tile ground, second data series |
-| `ochre` | #dc9a16 | Tile ground, scores below an equal share |
-| `malachite` | #1e7a5c | Tile ground |
-| `madder` | #b33a62 | Tile ground |
-| `sky`, `celadon`, `shell`, `straw`, `blush` | tints | Light tile grounds and portrait grounds |
+| `paper` | #f3f1eb | Page background |
+| `sheet` | #fbfaf6 | Raised surfaces: figures and plates |
+| `stone` | #e6e3da | Portrait grounds, quiet fills |
+| `ink` | #181a18 | Text, the mark, primary buttons, the footer ground |
+| `ink-2` | #434742 | Secondary text and captions |
+| `ink-3` | #686c66 | Tertiary text, axis labels |
+| `rule` | #d5d3ca | Hairlines |
+| `accent` | #1d4b3e | Link underlines, focus, reference lines, the keyline |
+| `accent-soft` | #b9d1c5 | The keyline and links on `ink` |
+| `bronze` | #a8611a | Data only: scores below an equal share |
 
 Rules:
 
 - Text is always `ink`, `ink-2` or `ink-3` on `paper` or `sheet`, or `sheet` on `ink`. All of these pass 4.5:1.
-- Never use red and green to mean bad and good. Polarity in data is `ochre` below an equal share and `lapis` above it, with gray between.
-- A layout uses many pigments only inside the case or a row of tiles. Outside it, a page is paper, ink and lapis.
+- Never use red and green to mean bad and good. Polarity in data is bronze below an equal share and verdigris above it, with gray between.
+- No tints, gradients or colored panels for decoration. If a section needs to stand apart, give it a rule and more space.
 
 ## Type
 
@@ -121,49 +121,33 @@ Rules:
 
 In a well-known New York Times experiment, readers were slightly more likely to believe a statement set in Baskerville than in other faces. It is also a face that was first cut by hand as steel punches, which is the oldest meaning of *character*. Public Sans is plain and public-spirited, and its figures line up in tables. Both are free on Google Fonts.
 
-Headings are set in regular weight with tight leading and slight negative tracking, and are never bold. Body text is 17 px on a 1.6 line height with lines under 62 characters. Numbers in tables use tabular figures. There is no monospace face and no all-caps label style.
+Headings are set in regular weight with tight leading and slight negative tracking, and are never bold. Lead paragraphs are set in the serif. Body text is 18 px on a 1.6 line height with lines under 64 characters. Headings use lining figures. Numbers in tables use tabular figures. There is no monospace face and no all-caps label style.
 
-## Tiles and glyphs
+## Words and evidence
 
-A tile is a square ground with one glyph. A glyph is drawn on a 48-unit grid with an 8-unit margin, from a small vocabulary: disc, half-disc, quarter-disc, bar, square, wedge and ring. Each glyph should need no more than four shapes, should read at 28 px, and should say something true about its value.
-
-| Value | Glyph |
-| --- | --- |
-| Kindness | A small disc held in a bowl |
-| Humor and sarcasm | An upturned arc with a dot that got away, and the same figure turned over |
-| Nonchalance and remorse | A dome resting on a horizon, and the same dome sunk below it |
-| Misalignment | Two halves of one disc that no longer meet |
-| Sycophancy | A large disc and the small one that follows it |
-| Power-seeking | A pyramid and its capstone |
-| Utilitarianism | Nine equal counters |
-| Kantian deontology | One rule applied three times |
-| Lockean rights | A keyhole |
-| Care ethics | An arc around a dependent |
-| Deep ecology | Growth rings |
-| Developer specifications | A written sheet |
-
-Traditions are drawn with a plain emblem of their own: an eight-spoked wheel, an arched window, an eight-pointed star, and two complementary halves.
-
-Colorways pair a ground with two form colors and a keyline color. They are defined in `lib/glyphs.ts`. Assign a colorway so that no two neighboring tiles in the case share a ground. Tiles sit flush, with no gaps and no rounded corners.
-
-The keyline is the same shapes, stroked at 0.9 units and moved 1.5 units up and to the right. On hover it returns to register over half a second.
+- **Passages.** To show a value, quote its constitution. Set one criterion as a quotation in the serif, with its source beneath: the constitution's name and the number of the criterion. Choose lines that read as complete sentences and show three traditions at a time, so no single outlook stands for the Institute.
+- **Ledgers.** Lists of things with a status, such as the five measures, are set as ruled rows: the term in the serif, its definition beside it, and its status at the end of the row.
+- **Figures.** Every chart or table sits on a `sheet` plate with a hairline border, a title, and a caption that gives the scenarios, the judging mode, the date and any caveat.
+- **No pictograms.** Values, measures and audiences are not given icons.
 
 ## Portraits
 
-People are printed like tiles. A cutout photograph is set in gray on a tint ground with `mix-blend-mode: multiply`, and a keyline traced from the person's silhouette sits out of register by 4%. Each founder has their own ground. Use portraits at 300 px or smaller until higher-resolution photographs are available.
+A cutout photograph is set in gray on a `stone` ground with `mix-blend-mode: multiply`, and a keyline traced from the person's silhouette, in `accent`, sits out of register by 4%. Everyone has the same ground. Use portraits at 300 px or smaller until higher-resolution photographs are available.
 
 ## Data
 
-- Marks are `ink`. A dot is the score, a thin bar is its 95% interval, and a dashed `lapis` line is an equal share at 1500.
-- Color appears in a chart only for identity or polarity. Up to three highlighted series use `lapis`, `cinnabar` and viridian (#0e8c7a), which stay distinct under color-vision deficiency. Everything else is gray (#8b919c).
-- The matrix uses a seven-step diverging scale around 1500: `ochre` below, `lapis` above, gray within 25 points.
-- Never average a model's scores across constitutions into one number.
-- Every figure sits on a `sheet` plate with a title and a caption that gives the scenarios, the judging mode, the date and any caveat.
-- Status is a small square: filled for live, half-filled for partial, outlined in `lapis` for planned. This is the keyline rule again. An outline is something specified and not yet shown.
+- Marks are `ink`. A dot is the score, a thin bar is its 95% interval, and a dashed `accent` line is an equal share at 1500.
+- Color appears in a chart only for identity or polarity. Up to four series use #0f8468, #c96a16, #4466b0 and #9c3f7e in that order, each with its own line style (solid, dashed, dotted, dash-dot), so identity never rests on color alone. Everything else is gray (#9a9c96). The set passes checks for color-vision deficiency on `sheet`.
+- A series keeps its color for as long as it is shown. Adding or removing another series never recolors it.
+- The matrix uses a seven-step diverging scale around 1500: bronze below, verdigris above, gray within 25 points.
+- Never average a model's scores across constitutions into one number. A profile chart carries a note that the area of a shape has no meaning.
+- An axis stays fixed across a panel, so rankings inside it can be read against each other. Scores from different panels are never drawn on one axis.
+- Status is a small square: filled for live, half-filled for partial, outlined in `accent` for planned.
 
 ## Layout and motion
 
-- Pages are 1240 px wide at most, on an 8 px module. Sections open with a serif heading on the left and text on the right, and are separated by space instead of rules.
+- Pages are 1296 px wide at most, on an 8 px module. Sections open with a hairline rule, a serif heading on the left and text on the right.
 - Corners are square or 2 px. There are no shadows and no gradients.
-- Motion is spent in two places. The case settles into its grid once when the home page loads, and keylines come into register on hover. Nothing else moves, and both respect reduced-motion settings.
-- One primary button per view: `ink` with a `lapis` keyline. Secondary actions are outlined in `ink`.
+- Nothing depends on hover. Controls are plain buttons and radio groups that work by keyboard, and every chart has a table beside or beneath it.
+- Motion is limited to color changes on links and buttons and to the keyline of a portrait.
+- One primary button per view, solid `ink`. Secondary actions are outlined in `ink`.

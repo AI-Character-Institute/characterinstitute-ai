@@ -2,7 +2,6 @@
 // the team, prior work, and the standard descriptions of the Institute.
 // Voice rules are in the design system (see README): measured, plain, specific.
 
-import type { ColorwayName } from "./glyphs";
 
 export type LinkItem = { label: string; href: string };
 
@@ -124,7 +123,6 @@ export type Person = {
   role: string;
   href: string;
   bio: string;
-  way: ColorwayName;
   links: LinkItem[];
 };
 
@@ -134,7 +132,6 @@ export const TEAM: Person[] = [
     name: "Lionel Levine",
     role: "Co-founder",
     href: "https://lionellevine.github.io",
-    way: "sky",
     bio: "Professor of mathematics at Cornell University. He founded Cornell's Long-term AI Safety Research lab and leads its work on value evaluation and character training, including EigenBench.",
     links: [
       { label: "Website", href: "https://lionellevine.github.io" },
@@ -147,7 +144,6 @@ export const TEAM: Person[] = [
     name: "Sergei Smirnov",
     role: "Co-founder",
     href: "https://github.com/seriozh1",
-    way: "celadon",
     bio: "PhD student at the University of Helsinki working on the evaluation of AI values, with five years of industry experience in machine learning. He built CivAI's AI Values demo and is a graduate of MARS, SPAR and ARENA.",
     links: [
       { label: "LinkedIn", href: "https://linkedin.com/in/seriozh1" },
@@ -160,7 +156,6 @@ export const TEAM: Person[] = [
     name: "Avani Gupta",
     role: "Co-founder",
     href: "https://avani17101.github.io/",
-    way: "shell",
     bio: "AI engineer and researcher who trained a 72B clinical LLM on a Cerebras supercomputer and built agentic safety pipelines at G42 and MBZUAI. She is an incoming PhD student at Oxford and studies pro-sociality in multi-agent systems.",
     links: [
       { label: "Website", href: "https://avani17101.github.io/" },
@@ -173,7 +168,6 @@ export const TEAM: Person[] = [
     name: "Jinzhou Wu",
     role: "Co-founder",
     href: "https://www.jinzhouwu.com/",
-    way: "straw",
     bio: "College Scholar at Cornell University and a former Pivotal Research fellow. As president of Cornell AI Alignment he doubled its membership in two months and launched Cornell's first undergraduate course on AI safety.",
     links: [
       { label: "Website", href: "https://www.jinzhouwu.com/" },

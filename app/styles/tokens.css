@@ -1,56 +1,67 @@
 /* AI Character Institute design tokens.
    The single source for color, type, space and motion. Components read these
-   variables and never hard-code a value. */
+   variables and never hard-code a value.
+
+   The palette is taken from a struck coin, the first meaning of "character":
+   limestone paper, a warm black ink, the verdigris of old bronze as the one
+   signal color, and bronze itself as its counterweight in data. */
 
 :root {
   color-scheme: light;
 
-  /* Surfaces and ink. Ledger-tinted paper with blue-black ink. */
-  --paper: #eef0eb;
-  --sheet: #f9faf6;
-  --ink: #141b2d;
-  --ink-2: #404860;
-  --ink-3: #5c6479;
-  --rule: #cfd3d0;
-  --rule-soft: #e0e3de;
+  /* Surfaces and ink. */
+  --paper: #f3f1eb;
+  --sheet: #fbfaf6;
+  --stone: #e6e3da;
+  --ink: #181a18;
+  --ink-2: #434742;
+  --ink-3: #686c66;
+  --rule: #d5d3ca;
+  --rule-soft: #e4e2da;
 
-  /* Signal. Used for keylines, links and reference lines. */
-  --lapis: #2742d4;
-  --lapis-deep: #1b2f9c;
+  /* Signal. Links, focus, reference lines and the keyline of the mark. */
+  --accent: #1d4b3e;
+  --accent-deep: #133328;
+  --accent-soft: #b9d1c5;
+  --accent-tint: #e1e9e2;
 
-  /* Pigments. Carried by tiles and by data marks, never by text. */
-  --cinnabar: #d9432b;
-  --ochre: #dc9a16;
-  --malachite: #1e7a5c;
-  --madder: #b33a62;
+  /* Counterweight. Used in data only, for scores below an equal share. */
+  --bronze: #a8611a;
+  --bronze-tint: #efe2cb;
 
-  /* Tints of the pigments, for tile grounds and quiet fills. */
-  --sky: #bccdf1;
-  --celadon: #c1d9c7;
-  --shell: #f1c5b7;
-  --straw: #f0dc9b;
-  --blush: #ecc0cb;
+  /* Earlier names, kept so existing rules keep working. */
+  --lapis: var(--accent);
+  --lapis-deep: var(--accent-deep);
+  --sky: var(--accent-soft);
+  --celadon: var(--accent-tint);
+  --shell: var(--stone);
+  --straw: var(--bronze-tint);
+  --blush: var(--stone);
+  --cinnabar: var(--bronze);
+  --ochre: var(--bronze);
+  --malachite: var(--accent);
+  --madder: var(--ink-2);
 
   /* Type. */
   --font-serif: var(--font-baskervville), "Baskerville", "Libre Baskerville", Georgia, serif;
   --font-sans: var(--font-public-sans), "Libre Franklin", "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
-  --text-display: clamp(2.5rem, 1.5rem + 3.6vw, 4rem);
-  --text-h1: clamp(2.125rem, 1.5rem + 2.2vw, 3rem);
-  --text-h2: clamp(1.75rem, 1.4rem + 1.3vw, 2.25rem);
-  --text-h3: 1.5rem;
-  --text-h4: 1.1875rem;
-  --text-lead: clamp(1.1875rem, 1.1rem + 0.4vw, 1.3125rem);
-  --text-body: 1.0625rem;
-  --text-small: 0.9375rem;
-  --text-caption: 0.84375rem;
+  --text-display: clamp(2.75rem, 1.35rem + 4.7vw, 5.25rem);
+  --text-h1: clamp(2.375rem, 1.6rem + 2.9vw, 3.75rem);
+  --text-h2: clamp(1.875rem, 1.45rem + 1.7vw, 2.75rem);
+  --text-h3: 1.625rem;
+  --text-h4: 1.25rem;
+  --text-lead: clamp(1.25rem, 1.12rem + 0.55vw, 1.5rem);
+  --text-body: 1.125rem;
+  --text-small: 1rem;
+  --text-caption: 0.875rem;
 
-  --leading-tight: 1.08;
-  --leading-heading: 1.18;
+  --leading-tight: 1.04;
+  --leading-heading: 1.16;
   --leading-body: 1.6;
 
-  /* Space. One module of 8px. The tile is 12 modules on desktop. */
+  /* Space. One module of 8px. */
   --s-1: 0.25rem;
   --s-2: 0.5rem;
   --s-3: 0.75rem;
@@ -58,19 +69,19 @@
   --s-5: 1.5rem;
   --s-6: 2rem;
   --s-7: 3rem;
-  --s-8: 4rem;
-  --s-9: 6rem;
-  --s-10: 8rem;
+  --s-8: 4.5rem;
+  --s-9: 7rem;
+  --s-10: 9.5rem;
 
-  --measure: 62ch;
-  --page: 77.5rem;
-  --gutter: clamp(1.25rem, 4.5vw, 3.5rem);
+  --measure: 64ch;
+  --page: 81rem;
+  --gutter: clamp(1.25rem, 5vw, 4rem);
 
   /* Shape. Print-like: almost square. */
   --radius-1: 2px;
   --radius-2: 4px;
 
-  /* The keyline. Every outlined object sits this far out of register. */
+  /* The keyline of the mark. */
   --key-offset: 5px;
   --key-weight: 1.5px;
 

@@ -8,6 +8,7 @@ import "./styles/tokens.css";
 import "./styles/base.css";
 import "./styles/components.css";
 import "./styles/charts.css";
+import "./styles/institute.css";
 
 const baskervville = Baskervville({ subsets: ["latin"], style: ["normal", "italic"], variable: "--font-baskervville", display: "swap" });
 const publicSans = Public_Sans({ subsets: ["latin"], variable: "--font-public-sans", display: "swap" });
