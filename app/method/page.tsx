@@ -8,7 +8,7 @@ import { SOURCE } from "@/lib/results";
 
 export const metadata: Metadata = {
   title: "Method",
-  description: "How the AI Character Institute turns scenarios, constitutions and model judgments into scores, and what the scores can and cannot support.",
+  description: "How the AI Character Institute turns scenarios, constitutions and model judgments into scores, and where the preview falls short.",
 };
 
 // MathML, so the formula is real mathematics to a screen reader and scales with the text.
@@ -35,8 +35,9 @@ export default function Method() {
       <header className="page-head wrap">
         <h1>Method</h1>
         <p className="lead">
-          The preview results are produced with EigenBench. Models answer the same scenarios, judge one another&rsquo;s
-          answers against a written constitution, and the judgments are combined into one score for each model.
+          We produce the preview results with <Ext href={SOURCES.eigenbench}>EigenBench</Ext>, a method developed in
+          Lionel Levine&rsquo;s lab at Cornell. Models answer the same scenarios and judge one another&rsquo;s answers
+          against a written constitution, and we combine those judgments into one score for each model.
         </p>
       </header>
 
@@ -55,46 +56,41 @@ export default function Method() {
           <section id="measure">
             <h2>Fit to a constitution</h2>
             <p>
-              EigenBench measures how well a model&rsquo;s answers fit a written set of values, which we call a
-              constitution. A constitution makes the target explicit. The kindness constitution asks judges to look for
-              compassion and care. Others describe a trait such as humor, a philosophy such as utilitarianism, or a
-              disposition such as sycophancy.
-            </p>
-            <p>
-              A higher score means a closer fit to that constitution within the evaluation. It is a measurement of
-              behavior and carries no verdict about whether the fit is desirable.
+              A constitution is a written set of values, set out as a list of criteria that a judge can apply to an
+              answer. The kindness constitution asks judges to look for compassion and care, and others describe a
+              trait such as humor, a philosophy such as utilitarianism, or a disposition such as sycophancy. A higher
+              score means that a model&rsquo;s answers fit the constitution more closely within the evaluation. We
+              report that fit as a measurement of behavior, and whether the fit is desirable depends on the
+              constitution.
             </p>
           </section>
 
           <section id="scenarios">
             <h2>Scenarios and responses</h2>
             <p>
-              The models being evaluated respond to a shared set of scenarios. Most come from{" "}
-              <Ext href={SOURCES.airisk}>AIRiskDilemmas</Ext>, a collection of situations in which behavior can reveal
-              priorities: how a model handles a conflict, responds to someone in need, or weighs competing concerns. A
-              model is not told that its answer will be scored.
-            </p>
-            <p>
-              The dataset and generation settings of a run determine exactly what the models see. Those settings are
-              part of the experiment, and each panel on the results page states them.
+              Every model in a panel responds to the same scenarios, most of which come from{" "}
+              <Ext href={SOURCES.airisk}>AIRiskDilemmas</Ext>, a collection of situations in which a model&rsquo;s
+              behavior can reveal its priorities, such as how it handles a conflict, responds to someone in need, or
+              weighs competing concerns. A model is not told that its answer will be scored. Because the dataset and
+              the generation settings determine exactly what the models see, we treat them as part of the experiment
+              and state them with each panel.
             </p>
           </section>
 
           <section id="judges">
             <h2>Constitutions and judges</h2>
             <p>
-              The constitution provides the criteria for judging an answer. The models in a panel act both as
-              respondents and as judges of one another, and a judge does not know which model wrote the answer in front
-              of it. The preview panels use direct ratings, in which a judge rates an answer from 1 to 10 on each
-              criterion. Earlier runs, including the release history, use pairwise comparisons between two answers.
+              The models in a panel act both as respondents and as judges of one another, and a judge does not know
+              which model wrote the answer in front of it. In the preview panels a judge rates each answer from 1 to
+              10 on every criterion of the constitution. Earlier runs, including the release history, used pairwise
+              comparisons between two answers.
             </p>
             <Figure
               title="One judgment, as recorded"
               caption={
                 <>
-                  A single judgment from the frontier panel on the kindness constitution: {example.judge} rating an
-                  answer by {example.evaluee}. The mean of these eight ratings is {mean.toFixed(2)}. A panel of eight
-                  models on 200 scenarios produces 1,600 judgments like this one.
+                  {example.judge} rating an answer by {example.evaluee} on the kindness constitution. The mean of the{" "}
+                  {example.ratings.length} ratings is {mean.toFixed(2)}.
                 </>
               }
             >
@@ -131,13 +127,10 @@ export default function Method() {
             <h2>From judgments to scores</h2>
             <p>
               Model judges are imperfect, and some are better judges of a given constitution than others. EigenBench
-              handles this with EigenTrust, which weights each judge by how highly the group rates that judge&rsquo;s
-              own answers. Scores and judge weights are solved together, so a model that receives more trust also
-              contributes more to the aggregate judgment. No ground-truth labels are needed.
-            </p>
-            <p>
-              The result is a share of trust for every model. The score reported on this site expresses that share
-              relative to an equal split across the panel:
+              accounts for this with EigenTrust, which weights each judge by how highly the group rates that
+              judge&rsquo;s own answers. Scores and judge weights are solved together, so that a model which earns
+              more trust also contributes more to the aggregate judgment, and no ground-truth labels are needed. The
+              result is a share of trust for every model, which we report relative to an equal split across the panel.
             </p>
             <p className="formula" dangerouslySetInnerHTML={{ __html: SCORE_FORMULA }} />
             <p>
@@ -150,67 +143,46 @@ export default function Method() {
           <section id="uncertainty">
             <h2>Uncertainty</h2>
             <p>
-              Where a run reports them, the site shows the lower and upper bounds of a 95% bootstrap interval, made by
-              resampling whole scenarios. Nearby scores often have overlapping intervals. Their order should then be
-              treated as uncertain.
-            </p>
-            <p>
-              Where a run did not report intervals, the site says so and shows the score alone. A missing interval is
-              a gap in the record and should not be read as precision.
+              Where a run reports them, we show the bounds of a 95% bootstrap interval, made by resampling whole
+              scenarios. Nearby scores often have overlapping intervals, and in those cases we treat the order of the
+              models as uncertain. Where a run did not report intervals, we say so and show the score alone.
             </p>
           </section>
 
           <section id="comparing">
             <h2>Comparability</h2>
             <p>
-              Scores are relative to a reference group. Models evaluated together on the same constitution, scenarios
-              and judges can be compared directly. Changing the group can change a model&rsquo;s score even when its
-              behavior has not changed, which is why the site keeps each panel separate and compares releases only
-              within one run.
-            </p>
-            <p>
-              The site does not average different constitutions into an overall score. A high score on one
-              constitution is evidence about that target in that setting, and is no general measure of quality or
-              safety.
+              Every score is relative to the group of models judged together, which means that models evaluated on
+              the same constitution, scenarios and judges can be compared directly, while a change in the group can
+              move a model&rsquo;s score even when its behavior has not changed. For this reason we keep each panel separate
+              and compare releases only within a single run. We also do not average constitutions into an overall
+              score, because a high score means something different for each of them.
             </p>
           </section>
 
           <section id="limits">
             <h2>Limits of the preview</h2>
             <p>
-              The preview shows that the measurement works. It does not yet do what the Institute is being set up to
-              do, and several limits are worth stating plainly.
+              The preview shows that the measurement works, and it falls well short of what we are building. We see
+              four limits worth stating plainly. First, the judges are models. EigenTrust reduces the influence of
+              poor judges, and the consensus it finds is still a consensus among models. The{" "}
+              <Ext href={SOURCES.eigenbench}>EigenBench paper</Ext> reports that human evaluators&rsquo; judgments of
+              the same models align closely with it. Second, the scenarios are single prompts, which do not yet test
+              character over long contexts, under adversarial pressure, or while a model acts autonomously over many
+              steps. Third, the preview measures fit to written constitutions and does not yet test whether those
+              measurements predict behavior elsewhere, which is the question we consider most important. Fourth, the October panel is provisional, and two
+              constitutions were reworded between the August and October panels. The{" "}
+              <Link href="/values/">library</Link> shows the current wording.
             </p>
-            <ul>
-              <li>
-                The judges are models. EigenTrust reduces the influence of poor judges, and the consensus it finds is
-                still a consensus among models. The <Ext href={SOURCES.eigenbench}>EigenBench paper</Ext> checks the
-                method against human evaluators and reports that their judgments of the same models align closely with
-                its own.
-              </li>
-              <li>
-                Scenarios are single prompts. They do not yet test character over long contexts, under adversarial
-                pressure, or while a model acts autonomously over many steps.
-              </li>
-              <li>
-                No model has yet been scored against its own developer&rsquo;s published specification. That
-                comparison is the first addition planned for the suite.
-              </li>
-              <li>
-                The October panel is provisional, and two constitutions were reworded between the August and October
-                panels. The <Link href="/values/">library</Link> shows the current wording.
-              </li>
-            </ul>
           </section>
 
           <section id="reproduce">
             <h2>Reproducibility</h2>
             <p>
               Each published run records its model versions, constitution, scenario set, judging mode and aggregation
-              settings. The run artifacts, including every response and judgment, are in the{" "}
-              <Ext href={SOURCE.dataset}>open dataset</Ext>. The evaluation code is in the{" "}
-              <Ext href={SOURCE.code}>EigenBench repository</Ext>, and the method is described in the{" "}
-              <Ext href={SOURCES.eigenbench}>paper</Ext>.
+              settings. Every response and judgment is in the <Ext href={SOURCE.dataset}>open dataset</Ext>, the
+              evaluation code is in the <Ext href={SOURCE.code}>EigenBench repository</Ext>, and the method is
+              described in the <Ext href={SOURCES.eigenbench}>paper</Ext>.
             </p>
           </section>
         </article>

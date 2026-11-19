@@ -6,8 +6,8 @@ export default function NotFound() {
       <header className="page-head wrap">
         <h1>Page not found</h1>
         <p className="lead">
-          The address may have changed when the site was rebuilt. The <Link href="/results/">results</Link> and the{" "}
-          <Link href="/">home page</Link> are good places to start again.
+          We could not find this page. The <Link href="/results/">results</Link> and the <Link href="/">home page</Link>{" "}
+          are good places to start again.
         </p>
       </header>
     </main>

@@ -8,9 +8,9 @@ type Lens = "labs" | "weights" | "country";
 type Group = { id: string; label: string; rows: HistoryRow[]; path: "join" | "frontier" };
 
 const LENSES: { id: Lens; label: string; note: string }[] = [
-  { id: "labs", label: "Three labs", note: "Each line joins one lab’s releases in date order, including models of different sizes." },
-  { id: "weights", label: "Open and closed weights", note: "Each line follows the highest score reached so far by models of that kind." },
-  { id: "country", label: "United States and China", note: "Each line follows the highest score reached so far by models from that country." },
+  { id: "labs", label: "Three labs", note: "Lines join each lab’s releases in date order." },
+  { id: "weights", label: "Open and closed weights", note: "Lines follow the highest score reached so far in each group." },
+  { id: "country", label: "United States and China", note: "Lines follow the highest score reached so far in each country." },
 ];
 
 const SERIES = [
@@ -201,7 +201,9 @@ export function Trend({ compact = false }: { compact?: boolean }) {
           </div>
         )}
       </div>
-      <p className="trend-note">{LENSES.find((l) => l.id === lens)!.note}</p>
+      <p className="trend-note">
+        {all.length} models judged in one run on {HISTORY.scenarios}, {HISTORY.period}. {LENSES.find((l) => l.id === lens)!.note}
+      </p>
     </div>
   );
 }

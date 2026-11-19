@@ -18,7 +18,7 @@ npm run start      # serves out/ locally
 
 | Path | What it holds |
 | --- | --- |
-| `lib/content.ts` | Editable copy: navigation, the standard descriptions of the Institute, measures, team, prior work, contact email |
+| `lib/content.ts` | Editable copy: navigation, the standard descriptions of the Institute, the approach and path to impact, team, prior work, contact email |
 | `lib/values.ts` | The values library: label, group and summary for each constitution |
 | `lib/results.ts` | Typed access to the results snapshot and the views derived from it (panels, lab reports) |
 | `data/results.json` | The results snapshot every chart and table is built from |

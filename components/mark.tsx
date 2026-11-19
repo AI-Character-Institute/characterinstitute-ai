@@ -26,7 +26,10 @@ export function Mark({ size = 32, title, className }: { size?: number; title?: s
       </defs>
       <circle className="mark-key" cx="37" cy="27" r="23" fill="none" stroke="var(--mark-key, var(--lapis))" strokeWidth="3.4" />
       <circle className="mark-fill" cx="27" cy="37" r="23" fill="var(--mark-fill, currentColor)" />
-      <circle cx="37" cy="27" r="23" fill="none" stroke="var(--mark-ground, var(--paper))" strokeWidth="3.4" clipPath={`url(#${clip})`} />
+      {/* The clip stays on the disc while the knocked-out arc travels with the keyline. */}
+      <g clipPath={`url(#${clip})`}>
+        <circle className="mark-key" cx="37" cy="27" r="23" fill="none" stroke="var(--mark-ground, var(--paper))" strokeWidth="3.4" />
+      </g>
     </svg>
   );
 }

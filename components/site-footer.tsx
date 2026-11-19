@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CONTACT_EMAIL, NAV, ORG } from "@/lib/content";
-import { SNAPSHOT, SOURCE, formatDate } from "@/lib/results";
+import { SOURCE } from "@/lib/results";
 import { Mark } from "./mark";
 
 export function SiteFooter() {
@@ -12,7 +12,7 @@ export function SiteFooter() {
             <Mark size={30} />
             <span className="wordmark">{ORG.name}</span>
           </Link>
-          <p>{ORG.short}</p>
+          <p>{ORG.descriptor}</p>
         </div>
         <nav aria-label="Footer">
           <ul className="site-footer-links">
@@ -36,7 +36,6 @@ export function SiteFooter() {
         </ul>
       </div>
       <div className="wrap site-footer-meta">
-        <p>Results snapshot of {formatDate(SNAPSHOT)}.</p>
         <p>© 2026 {ORG.name}</p>
       </div>
     </footer>

@@ -11,31 +11,26 @@ export type Value = {
   criteria: string[];
 };
 
-export const GROUPS: { id: ValueGroup; label: string; note: string }[] = [
+export const GROUPS: { id: ValueGroup; label: string }[] = [
   {
     id: "trait",
     label: "Traits of character",
-    note: "Single dispositions, written as short constitutions. Several are used to study how training on one trait moves the others.",
   },
   {
     id: "risk",
     label: "Dispositions tied to risk",
-    note: "Constitutions that describe behavior a developer would usually want less of. A high score here means the model shows more of the trait.",
   },
   {
     id: "philosophy",
     label: "Moral and political philosophies",
-    note: "Whole outlooks, written from primary sources. They let us ask which traditions a model's answers lean toward.",
   },
   {
     id: "tradition",
     label: "Religious and wisdom traditions",
-    note: "Constitutions drawn from the ethical teaching of four traditions.",
   },
   {
     id: "spec",
     label: "Developer specifications",
-    note: "Criteria taken from documents that developers have published about how their own models should behave.",
   },
 ];
 

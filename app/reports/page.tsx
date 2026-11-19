@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { EQUAL_SHARE, HISTORY, LABS, SNAPSHOT, formatDate, type LabReport } from "@/lib/results";
+import { EQUAL_SHARE, HISTORY, LABS, type LabReport } from "@/lib/results";
 
 export const metadata: Metadata = {
   title: "Lab reports",
-  description: "One report per developer: the models evaluated, how each scored in its panel, and how the lab's releases have changed.",
+  description: "One report for each developer: the models evaluated, how each scored in its panel, and how the lab's releases have changed.",
 };
 
-/** The lab's releases as dots against the rest of the history run. */
+/** The lab's releases as dots against the dashed line of an equal share. */
 function Spark({ report }: { report: LabReport }) {
-  if (report.history.length < 2) return <span className="spark-none">One release in the history run</span>;
+  if (report.history.length < 2) return <span className="spark-none">One release</span>;
   const w = 168;
   const h = 44;
   const t0 = Date.parse(HISTORY.rows[0].released!);
@@ -33,33 +33,32 @@ export default function Reports() {
       <header className="page-head wrap">
         <h1>Lab reports</h1>
         <p className="lead">
-          One page per developer. Each report lists the models we have evaluated, shows how each scored within its
-          panel, and follows the lab&rsquo;s releases over time where the data allows.
-        </p>
-        <p className="note">
-          Reports are generated from the same snapshot as the <Link href="/results/">preview results</Link>, dated{" "}
-          {formatDate(SNAPSHOT)}. They describe scores and do not grade the lab.
+          We keep one report for each developer, covering the models we have evaluated so far and the way its releases
+          have changed over time.
         </p>
       </header>
       <section className="wrap band is-first is-last">
+        <div className="lab-head" aria-hidden="true">
+          <span>Lab</span>
+          <span>Models</span>
+          <span>In the frontier panels</span>
+          <span>Kindness by release</span>
+        </div>
         <ul className="lab-list">
-          {LABS.map((report) => (
-            <li key={report.slug}>
-              <Link href={`/reports/${report.slug}/`} className="lab-row">
-                <span className="lab-name">{report.label}</span>
-                <span className="lab-meta">
-                  {report.modelCount} models evaluated
-                  {report.panels.length > 0 && `, ${[...new Set(report.panels.map((p) => p.model.name))].join(" and ")} in the frontier panels`}
-                </span>
-                <Spark report={report} />
-              </Link>
-            </li>
-          ))}
+          {LABS.map((report) => {
+            const inPanels = [...new Set(report.panels.map((p) => p.model.name))];
+            return (
+              <li key={report.slug}>
+                <Link href={`/reports/${report.slug}/`} className="lab-row">
+                  <span className="lab-name">{report.label}</span>
+                  <span className="lab-count">{report.modelCount}</span>
+                  <span className="lab-meta">{inPanels.join(", ")}</span>
+                  <Spark report={report} />
+                </Link>
+              </li>
+            );
+          })}
         </ul>
-        <p className="note">
-          The small chart shows each lab&rsquo;s kindness scores in release order, against the dashed line of an equal
-          share. A lab appears here once two or more of its models have been evaluated.
-        </p>
       </section>
     </main>
   );

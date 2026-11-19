@@ -227,9 +227,8 @@ export function Compare({ values }: { values: ValueInfo }) {
       </div>
       <p className="lb-note">
         {panel.title}
-        {panel.status === "provisional" ? " (provisional)" : ""}. Each spoke is one constitution, on the same scale, and the dashed ring is an equal share at{" "}
-        {EQUAL_SHARE}. The area of a shape has no meaning, since a higher score means a closer fit to a constitution, which is not always better. Read
-        each spoke on its own.
+        {panel.status === "provisional" ? " (provisional)" : ""}. The dashed ring marks an equal share. Each spoke is read on its own, and the area
+        of a shape carries no meaning.
       </p>
     </div>
   );

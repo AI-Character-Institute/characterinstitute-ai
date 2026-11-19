@@ -179,20 +179,33 @@
 .matrix-legend {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--s-2) var(--s-5);
+  align-items: flex-start;
+  gap: var(--s-2) var(--s-4);
   margin-top: var(--s-5);
   font-size: var(--text-caption);
+  line-height: 0.875rem;
   color: var(--ink-2);
 }
 
-.matrix-legend li {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
+/* Seven steps side by side, with the boundary values set under the joins. */
+.matrix-scale {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(7, 2.75rem);
+  gap: 2px;
+  padding-bottom: 1.375rem;
+}
+
+.matrix-scale b {
+  position: absolute;
+  top: 1.25rem;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
 .matrix-swatch {
-  width: 0.875rem;
   height: 0.875rem;
 }
 

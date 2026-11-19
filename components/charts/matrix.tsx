@@ -36,7 +36,7 @@ export function Matrix({ panel, highlight }: { panel: Panel; highlight?: string[
             </th>
             {values.map((id) => (
               <th scope="col" key={id}>
-                <Link href={`/results/#${id}`} className="matrix-head">
+                <Link href={`/results/?panel=${panel.id}&value=${id}#leaderboard`} className="matrix-head">
                   <span>{value(id).label}</span>
                 </Link>
               </th>
@@ -72,15 +72,22 @@ export function Matrix({ panel, highlight }: { panel: Panel; highlight?: string[
   );
 }
 
+/** The color scale as one strip, labeled at the boundaries between steps. */
 export function MatrixLegend() {
+  const bounds = ["\u2212150", "\u221275", "\u221225", "+25", "+75", "+150"];
   return (
-    <ul className="matrix-legend" aria-label="Color scale">
-      {STEP_LABELS.map(([s, label]) => (
-        <li key={s}>
-          <span className="matrix-swatch" data-step={s} aria-hidden="true" />
-          {label}
-        </li>
-      ))}
-    </ul>
+    <div className="matrix-legend" role="img" aria-label={`Color scale. ${STEP_LABELS.map(([, label]) => label).join(", ")}.`}>
+      <span>Points from an equal share</span>
+      <span className="matrix-scale" aria-hidden="true">
+        {STEP_LABELS.map(([s]) => (
+          <i key={s} className="matrix-swatch" data-step={s} />
+        ))}
+        {bounds.map((b, i) => (
+          <b key={b} style={{ left: `${((i + 1) / 7) * 100}%` }}>
+            {b}
+          </b>
+        ))}
+      </span>
+    </div>
   );
 }

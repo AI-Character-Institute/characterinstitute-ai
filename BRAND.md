@@ -4,13 +4,13 @@ The brand language and design system of the AI Character Institute: how the Inst
 
 ## The idea
 
-**Character** comes from the Greek *kharaktēr*, an engraved mark: the stamp pressed into a coin, and later a letter of type. A character was first a mark that showed what something was. That is the Institute's work. We make a model's character visible, and we check it against what was written down.
+**Character** comes from the Greek *kharaktēr*, an engraved mark: the stamp pressed into a coin, and later a letter of type. A character was first a mark that showed what something was. That is the Institute's work. We make a model's character visible, and we test what it tells us about how the model will behave.
 
 Three things follow from this, and they organize the whole system.
 
-1. **Words and evidence.** The Institute shows two kinds of thing: what was written down and what was measured. Values appear as passages from the constitutions themselves, set as quotations. Results appear as figures with captions, intervals and dates. There are no pictograms standing in for a value, because a symbol says less than the sentence it replaces.
-2. **The record.** The Institute's product is a public, dated, continuing record. Layouts read like a well-made report: hairline rules, generous margins, numbers with intervals, and every result saying when it was measured.
-3. **Fill and keyline.** The mark is a solid disc and an outline of the same disc, slightly out of register. The fill stands for the character a model shows. The keyline stands for the character that was specified. The distance between them is what we measure. Portraits carry the same keyline, and nothing else does.
+1. **Words and evidence.** The Institute shows two kinds of thing: what was written down and what was measured. Values appear as passages from the constitutions themselves, set as quotations. Results appear as figures with intervals. There are no pictograms standing in for a value, because a symbol says less than the sentence it replaces.
+2. **The record.** The Institute's product is a public, dated, continuing record. Layouts read like a well-made report: hairline rules, generous margins, and numbers with intervals.
+3. **Fill and keyline.** The mark is a solid disc and an outline of the same disc, slightly out of register. The fill stands for a model's character as we measure it. The keyline stands for its behavior where no evaluation has looked. How well the first predicts the second is what we test, and on hover the two come into register. Portraits carry the same keyline, and nothing else does.
 
 The look should feel made by people for people: a humanist serif, warm paper, real sentences and real faces. It should also be hard to mistake for one of the labs we evaluate, so it borrows nothing from their palettes.
 
@@ -19,34 +19,43 @@ The look should feel made by people for people: a humanist serif, warm paper, re
 | Use | Wording |
 | --- | --- |
 | Descriptor | Independent evaluation of AI character |
-| One sentence | The AI Character Institute is an independent non-profit that evaluates the character of frontier AI models. |
-| Standard paragraph | The AI Character Institute is an independent non-profit that evaluates the character of frontier AI models. We measure the values that models show in their behavior, compare them with what their developers have written down, and publish the results for every major release, so that labs can fix the gaps and policymakers can hold labs to their commitments. |
-| Definition of character | The values and dispositions that shape what a model does, most visibly where its instructions run out. |
+| Opening statement | We believe that as AI models grow more capable and act with more autonomy, a larger share of their behavior will fall in situations that no existing evaluation covers. The AI Character Institute is an independent non-profit that tests whether a model's character predicts how it behaves in those situations, and how that character holds up under pressure and over time. |
+| One sentence | The AI Character Institute is an independent non-profit that tests whether a model's character predicts how it behaves in situations that existing evaluations do not cover, and how that character holds up under pressure and over time. |
+| Definition of character | The stable propensities and value priorities that shape a model's choices across contexts. |
 | Shorthand for people in the field | METR for AI values |
 
 "METR for AI values" is useful in a pitch or a conversation with someone who knows the field. It should not be a headline, because it defines the Institute by another organization.
 
-What each audience should take away:
+The positioning follows the Institute's theory of change, which the About page carries in full. What each audience should take away:
 
-- **Labs.** A second reading of a model's values before it ships, made with an open suite the lab can run itself, and shared with the model spec team before anything is published.
-- **Policymakers.** Public, comparable measurements of model values that a standard can refer to.
-- **Funders and researchers.** The first versions already exist. EigenBench was an oral at ICLR 2026, and the preview results cover 15 frontier models.
+- **Developers.** Evidence about which traits predict misalignment, as a concrete target for character training.
+- **Evaluators and safety researchers.** Which character evaluations carry real information about behavior, and a validated character profile as one line of evidence in a safety case.
+- **Policymakers and the public.** Reproducible reports that track each model's character across versions and under pressure.
+- **Funders.** The first versions already exist. EigenBench was an oral at ICLR 2026, and the preview results cover 15 frontier models.
+
+Audits of whether a model conforms to its developer's published specification are a different question. We describe that work as complementary to ours and do not present it as part of the suite.
 
 ## Voice
 
-The Institute sounds like a careful evaluator: someone who has looked closely, says what was found, and says how sure they are. Five rules.
+The Institute writes the way a careful founder writes to the people whose trust it is asking for. We say what we believe, what we have measured and what we do not yet know, in full sentences and in the first person. Six rules.
 
-**Measured.** Report what was observed, under what conditions, and with what uncertainty. Prefer "in this panel", "the results suggest" and an interval to a flat claim.
+**First person.** We write as "we". Convictions open with "we believe" or "we think", hypotheses are named as hypotheses, and expectations open with "we expect". The present tense is kept for what is already true.
+
+> Our working hypothesis is that a small number of character traits account for much of how a model behaves across threat models.
+
+**Whole thoughts.** A sentence carries a claim together with its qualification, so most sentences run long and a short one follows only to state a consequence or a limit. Paragraphs do not open with a short declarative sentence. Fragments, slogans and rhetorical questions are never used.
+
+**Exact.** Name the model version, the constitution, the date and the number of scenarios. "Frontier models" becomes "eight frontier models". "Recently" becomes "August 2026".
 
 > Claude Sonnet 5 scored above an equal share on 4 of 6 constitutions in the August 2026 panel.
 
-**Plain.** Use the ordinary word: values, behavior, release, score. No "unlock", "revolutionary" or "cutting-edge". A sentence should survive being read aloud to a policymaker.
+**Candid about limits.** We state what the preview cannot yet show and label anything provisional or planned as such. Trust comes from the limits being in plain view.
 
-**Even-handed.** Describe a model and leave the grading to the reader. A higher score means a closer fit to a constitution, which is not always better, so results are never colored good or bad and labs are never ranked overall.
+> The preview shows that the measurement works, and it falls well short of what we are building.
 
-**Specific.** Name the model version, the constitution, the date and the number of scenarios. "Frontier models" becomes "eight frontier models". "Recently" becomes "August 2026".
+**Even-handed.** We describe a model and leave the grading to the reader. A higher score means a closer fit to a constitution, whether or not the trait is one anyone would want, so results are never colored good or bad and labs are never ranked overall.
 
-**Open about limits.** State what the preview cannot yet show, and label anything provisional or planned as such. Trust comes from the caveats being in plain view.
+**Economical.** A page says each thing once. A heading stands alone, with no explanatory text beside it. A figure has a title and at most one line beneath it. Text that describes the page itself, such as how to read a layout or when a snapshot was taken, is left out.
 
 ### Vocabulary
 
@@ -55,7 +64,7 @@ The Institute sounds like a careful evaluator: someone who has looked closely, s
 | character, values, dispositions | The subject. "Personality" is too light and "alignment" is a verdict. |
 | shows, scores, fits | Verbs for behavior we observed. Avoid "believes", "wants" or "feels" for a model. |
 | specification, constitution | What a developer or we wrote down. A constitution is any written set of values a model can be scored against. |
-| fidelity, divergence, stability, drift | The four things measured: fit to a constitution, the gap from a developer's specification, robustness under pressure, and change across releases. |
+| measurement, validation, stress-testing | The three parts of the work: an audited open suite, tests of whether its scores predict held-out behavior, and studies of how character holds up under pressure and over time. |
 | panel | The set of models judged together. Scores are comparable only within one. |
 | equal share | A score of 1500. Preferred to "average". |
 | the record, the preview results | What the Institute publishes. "Leaderboard" is fine as a description and should not be the name. |
@@ -69,6 +78,8 @@ Avoid verdict words about models and labs: safe, unsafe, aligned, misaligned, be
 - Sentence case for every heading, label and button.
 - Headings are summary phrases, such as "Preview results" or "Measures of character". A heading is never a question or a full sentence.
 - No all-caps labels, no exclamation marks, and no arrows in link text.
+- No em dashes, no semicolons and no contractions. Asides go in commas or parentheses.
+- Enumerations inside a paragraph read "First", "Second", "Third". Bulleted lists are for reference material only.
 - Scores are whole numbers. Intervals read "1529 to 1587".
 - Dates are written out: November 16, 2026. Panels are named by month: the August 2026 panel.
 - A model is named as its developer names it, with the version: GPT-5.6 Sol, Claude Opus 5.5.
@@ -126,8 +137,8 @@ Headings are set in regular weight with tight leading and slight negative tracki
 ## Words and evidence
 
 - **Passages.** To show a value, quote its constitution. Set one criterion as a quotation in the serif, with its source beneath: the constitution's name and the number of the criterion. Choose lines that read as complete sentences and show three traditions at a time, so no single outlook stands for the Institute.
-- **Ledgers.** Lists of things with a status, such as the five measures, are set as ruled rows: the term in the serif, its definition beside it, and its status at the end of the row.
-- **Figures.** Every chart or table sits on a `sheet` plate with a hairline border, a title, and a caption that gives the scenarios, the judging mode, the date and any caveat.
+- **Ledgers.** Lists of things with a status, such as the three parts of the approach, are set as ruled rows: the term in the serif, its definition beside it, and its status at the end of the row.
+- **Figures.** Every chart or table sits on a `sheet` plate with a hairline border and a title. At most one line beneath it gives the panel, the scenarios and any real caveat. The method page holds everything else.
 - **No pictograms.** Values, measures and audiences are not given icons.
 
 ## Portraits
@@ -146,8 +157,9 @@ A cutout photograph is set in gray on a `stone` ground with `mix-blend-mode: mul
 
 ## Layout and motion
 
-- Pages are 1296 px wide at most, on an 8 px module. Sections open with a hairline rule, a serif heading on the left and text on the right.
+- Pages are 1296 px wide at most, on an 8 px module. Sections open with a hairline rule and a serif heading, and the heading stands alone.
+- The home page leads with results. The opening statement and four counts sit above the leaderboard, and everything about the Institute follows the figures.
 - Corners are square or 2 px. There are no shadows and no gradients.
 - Nothing depends on hover. Controls are plain buttons and radio groups that work by keyboard, and every chart has a table beside or beneath it.
-- Motion is limited to color changes on links and buttons and to the keyline of a portrait.
-- One primary button per view, solid `ink`. Secondary actions are outlined in `ink`.
+- Motion is limited to color changes on links and to the keyline. On hover, the keyline of the mark and of a portrait moves into register with its fill, and the whole outline travels together.
+- Links carry navigation. Where a page needs a button, there is one per view, solid `ink`.

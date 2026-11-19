@@ -113,8 +113,8 @@ export function Leaderboard({ values }: { values: ValueInfo }) {
       </table>
       <p className="lb-note">
         {panel.title}
-        {panel.status === "provisional" ? " (provisional)" : ""}. {panel.scenarios}. {panel.judging} The dashed line marks an equal share at{" "}
-        {EQUAL_SHARE}. Where two intervals overlap, the order of the two models is uncertain. {panel.note}
+        {panel.status === "provisional" ? " (provisional)" : ""}, {panel.scenarios}. Bars show 95% intervals, and the dashed line marks an equal
+        share of the judges&rsquo; trust.
       </p>
     </div>
   );
