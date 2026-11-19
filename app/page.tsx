@@ -24,20 +24,21 @@ export default function Home() {
       <section className="hero wrap">
         <div className="hero-top">
           <h1 className="display">{ORG.descriptor}</h1>
-          <p className="lead">{ORG.statement.join(" ")}</p>
+          <p className="lead wide-only">{ORG.statement.join(" ")}</p>
+          <p className="lead narrow-only">{ORG.boilerplate}</p>
         </div>
         <dl className="facts">
           <div>
             <dt>{COUNTS.panelModels}</dt>
-            <dd>frontier models scored</dd>
+            <dd>models</dd>
           </div>
           <div>
             <dt>{COUNTS.values}</dt>
-            <dd>written constitutions</dd>
+            <dd>constitutions</dd>
           </div>
           <div>
             <dt>{COUNTS.historyModels}</dt>
-            <dd>releases across two years</dd>
+            <dd>releases</dd>
           </div>
           <div>
             <dt>{COUNTS.labs}</dt>
@@ -56,7 +57,7 @@ export default function Home() {
         <Figure title="Kindness across two years of releases">
           <Trend compact />
         </Figure>
-        <Figure title={`Scores across constitutions, ${panel.title}`}>
+        <Figure title={`Scores across constitutions, ${panel.title}`} className="wide-only">
           <Matrix panel={panel} />
           <MatrixLegend />
         </Figure>

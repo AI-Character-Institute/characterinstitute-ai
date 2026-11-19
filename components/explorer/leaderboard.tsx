@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { EQUAL_SHARE, PANELS, labLabel, labSlug, panelDomain } from "@/lib/results";
+import { Picker } from "./picker";
 import { round, ticks, useQueryParam } from "./util";
 
 export type ValueInfo = Record<string, { label: string; summary: string }>;
@@ -29,7 +30,7 @@ export function Leaderboard({ values }: { values: ValueInfo }) {
 
   return (
     <div className="lb">
-      <div className="lb-controls">
+      <div className="lb-controls wide-only">
         <fieldset className="seg">
           <legend>Panel</legend>
           {PANELS.map((p) => (
@@ -50,13 +51,19 @@ export function Leaderboard({ values }: { values: ValueInfo }) {
           ))}
         </div>
       </div>
-
-      <div className="lb-about">
-        <h3>{info?.label}</h3>
-        <p>
-          {info?.summary} <Link href={`/values/#${valueId}`}>Read the constitution</Link>
-        </p>
+      <div className="pickers narrow-only">
+        <Picker
+          label="Panel"
+          value={panel.id}
+          onChange={setPanelId}
+          options={PANELS.map((p) => ({ id: p.id, label: `${p.period}${p.status === "provisional" ? " (provisional)" : ""}` }))}
+        />
+        <Picker label="Constitution" value={valueId} onChange={setValueId} options={valueIds.map((id) => ({ id, label: values[id]?.label ?? id }))} />
       </div>
+
+      <p className="lb-about wide-only">
+        {info?.summary} <Link href={`/values/#${valueId}`}>Read the constitution</Link>
+      </p>
 
       <table className="lb-table">
         <caption className="visually-hidden">
@@ -113,8 +120,9 @@ export function Leaderboard({ values }: { values: ValueInfo }) {
       </table>
       <p className="lb-note">
         {panel.title}
-        {panel.status === "provisional" ? " (provisional)" : ""}, {panel.scenarios}. Bars show 95% intervals, and the dashed line marks an equal
-        share of the judges&rsquo; trust.
+        {panel.status === "provisional" ? " (provisional)" : ""}, {panel.scenarios}.{" "}
+        <span className="wide-only">Bars show 95% intervals, and the dashed line marks an equal share of the judges&rsquo; trust.</span>
+        <span className="narrow-only">Ranges are 95% intervals.</span>
       </p>
     </div>
   );

@@ -52,13 +52,17 @@ export default function Results() {
           <Trend />
           <details className="table-view">
             <summary>All {ranked.length} models as a table</summary>
-            <table className="data">
+            <table className="data is-fit">
               <thead>
                 <tr>
                   <th scope="col">Model</th>
-                  <th scope="col">Lab</th>
+                  <th scope="col" className="wide-only">
+                    Lab
+                  </th>
                   <th scope="col">Released</th>
-                  <th scope="col">Weights</th>
+                  <th scope="col" className="wide-only">
+                    Weights
+                  </th>
                   <th scope="col" className="num">
                     Score
                   </th>
@@ -67,10 +71,13 @@ export default function Results() {
               <tbody>
                 {ranked.map((r) => (
                   <tr key={r.name}>
-                    <th scope="row">{r.name}</th>
-                    <td>{labLabel(r.lab)}</td>
+                    <th scope="row">
+                      {r.name}
+                      <small className="narrow-only">{labLabel(r.lab)}</small>
+                    </th>
+                    <td className="wide-only">{labLabel(r.lab)}</td>
                     <td>{formatDate(r.released!, "month")}</td>
-                    <td>{r.open ? "Open" : "Closed"}</td>
+                    <td className="wide-only">{r.open ? "Open" : "Closed"}</td>
                     <td className="num">{fmt(r.score)}</td>
                   </tr>
                 ))}

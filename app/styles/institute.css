@@ -437,16 +437,9 @@ main > .band:last-child {
 }
 
 .lb-about {
-  margin-top: var(--s-7);
-  max-width: 68ch;
-}
-
-.lb-about h3 {
-  font-size: var(--text-h2);
-}
-
-.lb-about p {
-  margin-top: var(--s-2);
+  margin-top: var(--s-5);
+  max-width: 76ch;
+  font-size: var(--text-small);
   color: var(--ink-2);
 }
 
@@ -1108,6 +1101,663 @@ main > .band:last-child {
   }
 
   .delta-track {
+    display: none;
+  }
+}
+
+/* ---------- A lab's profile, in the leaderboard's form ---------- */
+
+.lb-table.is-profile {
+  margin-top: 0;
+}
+
+.lb-table.is-profile th,
+.lb-table.is-profile td {
+  padding-block: 0.7rem;
+}
+
+.is-profile .lb-model {
+  display: inline;
+  font-size: var(--text-small);
+  font-weight: 500;
+  text-decoration-color: var(--rule);
+}
+
+.is-profile .lb-score {
+  font-size: 1.125rem;
+}
+
+/* ---------- Long-form statements ---------- */
+
+.letter {
+  max-width: 58ch;
+  font-family: var(--font-serif);
+  font-size: 1.3125rem;
+  line-height: 1.5;
+  font-variant-numeric: lining-nums;
+}
+
+/* ---------- Path to impact ---------- */
+
+.impact {
+  display: grid;
+  gap: var(--s-6);
+}
+
+@media (min-width: 52rem) {
+  .impact {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--s-7);
+  }
+}
+
+.impact li {
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--ink);
+}
+
+.impact h3 {
+  font-size: 1.4375rem;
+}
+
+.impact p {
+  margin-top: var(--s-3);
+  max-width: 44ch;
+  color: var(--ink-2);
+}
+
+/* ---------- One side of the phone breakpoint only ---------- */
+
+@media (max-width: 39.99rem) {
+  .wide-only {
+    display: none !important;
+  }
+}
+
+@media (min-width: 40rem) {
+  .narrow-only {
+    display: none !important;
+  }
+}
+
+/* ---------- Pickers: native selects that replace button rows on a phone ---------- */
+
+.pickers {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: var(--s-3);
+}
+
+.field {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.field select {
+  appearance: none;
+  width: 100%;
+  min-width: 0;
+  padding: 0.65rem 2.1rem 0.65rem 0.8rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: transparent
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23181a18' stroke-width='1.6'/%3E%3C/svg%3E")
+    no-repeat right 0.75rem center / 0.7rem auto;
+  color: var(--ink);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+}
+
+.field select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.data th small {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--ink-2);
+}
+
+/* ---------- Phones ----------
+   Fewer things per screen: figures lose their box, button rows become
+   pickers, tables become lists, and secondary columns are dropped. */
+
+@media (max-width: 39.99rem) {
+  :root {
+    --text-body: 1.0625rem;
+    --text-lead: 1.1875rem;
+  }
+
+  /* Header */
+  .site-header-inner {
+    gap: var(--s-2) var(--s-5);
+    padding-block: var(--s-4) var(--s-3);
+  }
+
+  /* The five links share the full width, so they fit the narrowest phones. */
+  .site-header-inner nav {
+    flex: 1 0 100%;
+    min-width: 0;
+  }
+
+  .nav-links {
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .nav-links a {
+    font-size: 0.9375rem;
+  }
+
+  /* Sections */
+  .band {
+    padding-top: var(--s-7);
+  }
+
+  .band::before {
+    margin-bottom: var(--s-6);
+  }
+
+  .band > h2 {
+    margin-bottom: var(--s-5);
+  }
+
+  .band.is-last,
+  main > .band:last-child {
+    padding-bottom: var(--s-8);
+  }
+
+  .page-head {
+    padding-block: var(--s-7) var(--s-5);
+  }
+
+  .site-footer {
+    padding-block: var(--s-7) var(--s-5);
+  }
+
+  /* Hero */
+  .hero {
+    padding-block: var(--s-7) var(--s-6);
+  }
+
+  .hero .facts {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--s-3);
+    margin-top: var(--s-6);
+    padding-top: var(--s-4);
+  }
+
+  .facts dt {
+    font-size: 1.75rem;
+  }
+
+  .facts dd {
+    margin-top: var(--s-1);
+    font-size: 0.75rem;
+    line-height: 1.3;
+  }
+
+  /* Figures lose their box and are separated by a rule */
+  .plate {
+    --sheet: var(--paper);
+    padding: 0;
+    border: 0;
+    background: none;
+  }
+
+  .plate + .plate {
+    margin-top: var(--s-7);
+    padding-top: var(--s-6);
+    border-top: 1px solid var(--rule);
+  }
+
+  .plate-title {
+    font-size: 1.375rem;
+  }
+
+  .plate-body {
+    margin-top: var(--s-4);
+  }
+
+  .plate figcaption {
+    margin-top: var(--s-4);
+  }
+
+  /* Leaderboard as a ranked list: rank, model and lab, score and interval */
+  .lb-table {
+    display: block;
+    margin-top: var(--s-5);
+  }
+
+  .lb-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .lb-table tbody {
+    display: block;
+    border-top: 1px solid var(--ink);
+  }
+
+  .lb-table tbody tr {
+    display: grid;
+    grid-template-columns: 1.75rem minmax(0, 1fr) auto;
+    grid-template-areas:
+      "rank model score"
+      "rank model int";
+    column-gap: var(--s-3);
+    align-items: center;
+    padding-block: 0.7rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .lb-table tbody th,
+  .lb-table tbody td,
+  .lb-table.is-profile tbody th,
+  .lb-table.is-profile tbody td {
+    display: block;
+    padding: 0;
+    border: 0;
+  }
+
+  .lb-table .lb-rank {
+    grid-area: rank;
+    width: auto;
+  }
+
+  .lb-table tbody th {
+    grid-area: model;
+  }
+
+  .lb-table .lb-score {
+    grid-area: score;
+    align-self: end;
+    font-size: 1.1875rem;
+    text-align: right;
+  }
+
+  .lb-table .lb-int {
+    grid-area: int;
+    align-self: start;
+    font-size: 0.75rem;
+    text-align: right;
+  }
+
+  .lb-table tbody td.lb-plot,
+  .lb-table.is-profile tbody td.lb-plot {
+    display: none;
+  }
+
+  .lb-model {
+    font-size: 1.0625rem;
+  }
+
+  .lb-note {
+    margin-top: var(--s-4);
+  }
+
+  /* A lab's profile: constitution and rank, score and interval */
+  .lb-table.is-profile tbody tr {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "model score"
+      "of int";
+  }
+
+  .lb-table.is-profile .lb-of {
+    grid-area: of;
+    font-size: 0.75rem;
+    text-align: left;
+    color: var(--ink-2);
+  }
+
+  .is-profile .lb-model {
+    font-size: 1rem;
+  }
+
+  /* Kindness over time */
+  .trend-bar {
+    display: grid;
+    gap: var(--s-4);
+  }
+
+  .trend-key {
+    gap: var(--s-1) var(--s-4);
+    font-size: 0.8125rem;
+  }
+
+  /* Model profiles */
+  .chip {
+    padding: 0.4rem 0.65rem;
+    font-size: 0.8125rem;
+  }
+
+  .cmp-table {
+    min-width: 0;
+    font-size: 0.875rem;
+  }
+
+  .cmp-table th:first-child {
+    width: 31%;
+  }
+
+  .cmp-table thead th {
+    font-size: 0.75rem;
+    line-height: 1.25;
+    white-space: normal;
+  }
+
+  .pickers + .lb-controls {
+    margin-top: var(--s-4);
+  }
+
+  .cmp-head {
+    display: grid;
+    justify-items: end;
+    gap: 0.25rem;
+  }
+
+  .cmp-table small {
+    display: none;
+  }
+
+  .cmp-table td b {
+    font-size: 0.9375rem;
+  }
+
+  /* Matrix: upright column labels, narrow cells, model names stay put while it scrolls */
+  .matrix-scroll {
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+
+  .matrix {
+    border-spacing: 2px;
+    font-size: 0.8125rem;
+  }
+
+  .matrix-head {
+    min-width: 0;
+    justify-items: center;
+    font-size: 0.75rem;
+  }
+
+  .matrix-head span {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    white-space: nowrap;
+  }
+
+  .matrix thead th:not(.matrix-corner) {
+    text-align: center;
+  }
+
+  .matrix tbody th,
+  .matrix-corner {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    max-width: 6.75rem;
+    padding-right: var(--s-2);
+    background: var(--paper);
+    white-space: normal;
+  }
+
+  .matrix-lab {
+    display: none;
+  }
+
+  .matrix-cell {
+    min-width: 2.4rem;
+    height: 2.25rem;
+    padding: 0 0.15rem;
+  }
+
+  .matrix-scale {
+    grid-template-columns: repeat(7, minmax(0, 2.25rem));
+  }
+
+  /* In-page links as one scrolling row */
+  .toc {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+
+  .toc::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Approach and path to impact */
+  .ledger {
+    border-bottom: 0;
+  }
+
+  .ledger li:last-child {
+    padding-bottom: 0;
+  }
+
+  .ledger li {
+    gap: var(--s-2);
+    padding-block: var(--s-5);
+  }
+
+  .ledger h3 {
+    font-size: 1.375rem;
+  }
+
+  .ledger-gloss {
+    font-size: 1.0625rem;
+  }
+
+  .impact {
+    gap: var(--s-5);
+  }
+
+  .impact li {
+    padding-top: var(--s-4);
+  }
+
+  .impact h3 {
+    font-size: 1.25rem;
+  }
+
+  /* One passage on a phone */
+  .passages li:nth-child(n + 2) {
+    display: none;
+  }
+
+  .passages blockquote {
+    font-size: 1.375rem;
+  }
+
+  /* People */
+  .people.is-compact {
+    gap: var(--s-5) var(--s-4);
+  }
+
+  .people.is-compact .person-name {
+    margin-top: var(--s-3);
+    font-size: 1.1875rem;
+  }
+
+  .people.is-compact .person-role {
+    font-size: 0.8125rem;
+    line-height: 1.35;
+  }
+
+  .people:not(.is-compact) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-6);
+  }
+
+  .people:not(.is-compact) li {
+    display: grid;
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    column-gap: var(--s-4);
+  }
+
+  .people:not(.is-compact) .portrait {
+    grid-row: 1 / span 2;
+    max-width: none;
+  }
+
+  .people:not(.is-compact) .person-name {
+    align-self: end;
+    margin-top: 0;
+  }
+
+  .people:not(.is-compact) .person-role {
+    align-self: start;
+    margin-top: 0;
+  }
+
+  .people:not(.is-compact) .person-bio,
+  .people:not(.is-compact) .person-links {
+    grid-column: 1 / -1;
+  }
+
+  /* Long-form text, work and contact */
+  .letter {
+    font-size: 1.1875rem;
+    line-height: 1.48;
+  }
+
+  .work h3 {
+    font-size: 1.25rem;
+  }
+
+  .contact-mail {
+    font-size: 1.5rem;
+  }
+
+  /* Data tables */
+  .data {
+    width: 100%;
+    font-size: 0.9375rem;
+  }
+
+  .data th,
+  .data td {
+    padding-right: var(--s-3);
+  }
+
+  .data .num {
+    padding-right: var(--s-3);
+    padding-left: var(--s-2);
+  }
+
+  /* Point labels collide at this width. The table beneath names every release. */
+  .timeline .chart-label {
+    display: none;
+  }
+}
+
+/* ---------- Values: the results link shares a line with the criteria toggle ---------- */
+
+.value-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: var(--s-4);
+}
+
+.value-body > h3,
+.value-body > p:not(.value-results) {
+  grid-column: 1 / -1;
+}
+
+.value details {
+  grid-column: 1 / -1;
+  grid-row: 3;
+}
+
+.value-body > .value-results {
+  grid-column: 2;
+  grid-row: 3;
+  z-index: 1;
+  align-self: start;
+  margin-top: var(--s-3);
+}
+
+/* ---------- Lab list below the table layout: text on the left, chart on the right ---------- */
+
+@media (max-width: 47.99rem) {
+  .lab-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "name spark"
+      "count spark"
+      "meta spark";
+    gap: 0.15rem var(--s-4);
+  }
+
+  .lab-name {
+    grid-area: name;
+    font-size: 1.375rem;
+  }
+
+  .lab-count {
+    grid-area: count;
+  }
+
+  .lab-meta {
+    grid-area: meta;
+  }
+
+  .spark,
+  .spark-none {
+    grid-area: spark;
+    align-self: center;
+  }
+
+  .spark {
+    width: 7.5rem;
+    height: auto;
+  }
+}
+
+@media (max-width: 39.99rem) {
+  /* The method page reads straight through on a phone. */
+  .article-toc {
+    display: none;
+  }
+
+  .value,
+  .value-list .value {
+    padding-block: var(--s-5);
+  }
+}
+
+/* A section that follows the page head directly, with no rule of its own. */
+.band.is-plain {
+  padding-top: var(--s-5);
+}
+
+.band.is-plain::before {
+  content: none;
+}
+
+/* Between a phone and a full desktop the leaderboard keeps its plot but drops the
+   interval text and all axis labels except the reference, which would collide. */
+@media (min-width: 40rem) and (max-width: 63.99rem) {
+  .lb-int {
+    display: none;
+  }
+
+  .lb-axis span:not([data-ref]) {
     display: none;
   }
 }

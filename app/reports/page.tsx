@@ -37,7 +37,7 @@ export default function Reports() {
           have changed over time.
         </p>
       </header>
-      <section className="wrap band is-first is-last">
+      <section className="wrap band is-plain is-last">
         <div className="lab-head" aria-hidden="true">
           <span>Lab</span>
           <span>Models</span>

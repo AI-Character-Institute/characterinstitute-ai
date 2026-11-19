@@ -55,7 +55,8 @@ export function Profile({
             </th>
             <td className="num lb-score">{fmt(row.score)}</td>
             <td className="num lb-int">{row.lo !== null && row.hi !== null ? `${fmt(row.lo)} to ${fmt(row.hi)}` : "Not reported"}</td>
-            <td className="num">
+            <td className="num lb-of">
+              <span className="narrow-only">Rank </span>
               {rank} of {of}
             </td>
             <td className="lb-plot" aria-hidden="true">

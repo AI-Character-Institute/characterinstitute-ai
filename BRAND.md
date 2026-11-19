@@ -160,6 +160,7 @@ A cutout photograph is set in gray on a `stone` ground with `mix-blend-mode: mul
 - Pages are 1296 px wide at most, on an 8 px module. Sections open with a hairline rule and a serif heading, and the heading stands alone.
 - The home page leads with results. The opening statement and four counts sit above the leaderboard, and everything about the Institute follows the figures.
 - Corners are square or 2 px. There are no shadows and no gradients.
+- On a phone a page shows fewer things at once. Figures lose their box, rows of buttons become native pickers, tables become ranked lists with the plot dropped, the home page shows one passage and leaves the matrix to the results page.
 - Nothing depends on hover. Controls are plain buttons and radio groups that work by keyboard, and every chart has a table beside or beneath it.
 - Motion is limited to color changes on links and to the keyline. On hover, the keyline of the mark and of a portrait moves into register with its fill, and the whole outline travels together.
 - Links carry navigation. Where a page needs a button, there is one per view, solid `ink`.

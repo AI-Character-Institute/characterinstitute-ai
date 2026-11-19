@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { EQUAL_SHARE, HISTORY, formatDate, labLabel, type HistoryRow } from "@/lib/results";
+import { Picker } from "./picker";
 import { round, ticks, useWidth } from "./util";
 
 type Lens = "labs" | "weights" | "country";
@@ -42,7 +43,7 @@ export function Trend({ compact = false }: { compact?: boolean }) {
   const [active, setActive] = useState<string | null>(null);
   const [ref, width] = useWidth<HTMLDivElement>(1040);
   const narrow = width < 640;
-  const height = narrow ? 340 : compact ? 420 : 480;
+  const height = narrow ? 300 : compact ? 420 : 480;
   const m = { top: 20, right: narrow ? 16 : 132, bottom: 40, left: 52 };
 
   const all = useMemo(() => HISTORY.rows.filter((r) => r.released).sort((a, b) => a.released!.localeCompare(b.released!)), []);
@@ -94,7 +95,7 @@ export function Trend({ compact = false }: { compact?: boolean }) {
   return (
     <div className="trend">
       <div className="trend-bar">
-        <fieldset className="seg">
+        <fieldset className="seg wide-only">
           <legend>Follow</legend>
           {LENSES.map((l) => (
             <label key={l.id}>
@@ -103,6 +104,9 @@ export function Trend({ compact = false }: { compact?: boolean }) {
             </label>
           ))}
         </fieldset>
+        <div className="narrow-only">
+          <Picker label="Follow" value={lens} onChange={(id) => setLens(id as Lens)} options={LENSES.map((l) => ({ id: l.id, label: l.label }))} />
+        </div>
         <ul className="trend-key">
           {lines.map((l) => (
             <li key={l.id}>
@@ -202,7 +206,10 @@ export function Trend({ compact = false }: { compact?: boolean }) {
         )}
       </div>
       <p className="trend-note">
-        {all.length} models judged in one run on {HISTORY.scenarios}, {HISTORY.period}. {LENSES.find((l) => l.id === lens)!.note}
+        <span className="wide-only">
+          {all.length} models judged in one run on {HISTORY.scenarios}, {HISTORY.period}.{" "}
+        </span>
+        {LENSES.find((l) => l.id === lens)!.note}
       </p>
     </div>
   );

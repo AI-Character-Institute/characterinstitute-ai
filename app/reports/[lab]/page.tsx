@@ -92,17 +92,19 @@ export default async function LabPage({ params }: Params) {
             }
           >
             <Timeline labs={[report.lab]} labelPoints />
-            <table className="data">
+            <table className="data is-fit">
               <thead>
                 <tr>
                   <th scope="col">Model</th>
                   <th scope="col">Released</th>
-                  <th scope="col">Weights</th>
+                  <th scope="col" className="wide-only">
+                    Weights
+                  </th>
                   <th scope="col" className="num">
                     Score
                   </th>
                   <th scope="col" className="num">
-                    Rank of {ranked.length}
+                    Rank<span className="wide-only"> of {ranked.length}</span>
                   </th>
                 </tr>
               </thead>
@@ -110,8 +112,11 @@ export default async function LabPage({ params }: Params) {
                 {report.history.map((r) => (
                   <tr key={r.name}>
                     <th scope="row">{r.name}</th>
-                    <td>{formatDate(r.released!)}</td>
-                    <td>{r.open ? "Open" : "Closed"}</td>
+                    <td>
+                      <span className="wide-only">{formatDate(r.released!)}</span>
+                      <span className="narrow-only">{formatDate(r.released!, "month")}</span>
+                    </td>
+                    <td className="wide-only">{r.open ? "Open" : "Closed"}</td>
                     <td className="num">{fmt(r.score)}</td>
                     <td className="num">{ranked.findIndex((x) => x.name === r.name) + 1}</td>
                   </tr>
@@ -127,15 +132,16 @@ export default async function LabPage({ params }: Params) {
           <h2 id="reasoning">Effect of extended reasoning</h2>
           {report.reasoning.map((entry) => (
             <Figure key={entry.model} title={entry.model}>
-              <table className="data">
+              <table className="data is-fit">
                 <thead>
                   <tr>
                     <th scope="col">Constitution</th>
                     <th scope="col" className="num">
-                      Direct answer
+                      Direct<span className="wide-only"> answer</span>
                     </th>
                     <th scope="col" className="num">
-                      With reasoning
+                      <span className="wide-only">With reasoning</span>
+                      <span className="narrow-only">Reasoning</span>
                     </th>
                     <th scope="col" className="num">
                       Change

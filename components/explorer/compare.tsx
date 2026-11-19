@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { EQUAL_SHARE, PANELS, labLabel, panelDomain, type Panel } from "@/lib/results";
 import type { ValueInfo } from "./leaderboard";
+import { Picker } from "./picker";
 import { round, ticks } from "./util";
 
 const SLOTS = [
@@ -80,8 +81,16 @@ export function Compare({ values }: { values: ValueInfo }) {
 
   return (
     <div className="cmp">
+      <div className="pickers narrow-only">
+        <Picker
+          label="Panel"
+          value={panel.id}
+          onChange={choosePanel}
+          options={PANELS.map((p) => ({ id: p.id, label: `${p.period}${p.status === "provisional" ? " (provisional)" : ""}` }))}
+        />
+      </div>
       <div className="lb-controls">
-        <fieldset className="seg">
+        <fieldset className="seg wide-only">
           <legend>Panel</legend>
           {PANELS.map((p) => (
             <label key={p.id}>
@@ -227,8 +236,8 @@ export function Compare({ values }: { values: ValueInfo }) {
       </div>
       <p className="lb-note">
         {panel.title}
-        {panel.status === "provisional" ? " (provisional)" : ""}. The dashed ring marks an equal share. Each spoke is read on its own, and the area
-        of a shape carries no meaning.
+        {panel.status === "provisional" ? " (provisional)" : ""}. The dashed ring marks an equal share.{" "}
+        <span className="wide-only">Each spoke is read on its own, and the area of a shape carries no meaning.</span>
       </p>
     </div>
   );
